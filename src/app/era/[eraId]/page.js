@@ -20,7 +20,7 @@ export default async function EraPage({ params }) {
   }
 
   return (
-    <main className="h-screen w-screen overflow-hidden bg-[#05070b] text-white">
+    <main className="fixed inset-0 overflow-hidden bg-[#05070b] text-white">
       <GameRoot era={era} />
     </main>
   );

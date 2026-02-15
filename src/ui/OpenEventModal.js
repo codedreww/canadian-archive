@@ -25,11 +25,18 @@ function toParagraphs(value) {
 // - images: ["url", ...]
 // - images: [{ src, alt?, caption? }, ...]
 function toImages(event) {
-  const raw = Array.isArray(event?.images) ? event.images : event?.image ? [event.image] : [];
+  const raw = Array.isArray(event?.images)
+    ? event.images
+    : event?.image
+      ? [event.image]
+      : [];
   return raw
     .map((item, index) => {
       if (typeof item === "string") {
-        return { src: item, alt: `${event?.title ?? "Event"} image ${index + 1}` };
+        return {
+          src: item,
+          alt: `${event?.title ?? "Event"} image ${index + 1}`,
+        };
       }
       if (!item?.src) return null;
       return {
@@ -61,8 +68,14 @@ function toLinks(event) {
 export default function OpenEventModal({ era, event, onClose }) {
   const images = useMemo(() => toImages(event), [event]);
   const hasSingleImage = images.length === 1;
-  const summaryParagraphs = useMemo(() => toParagraphs(event?.summary), [event?.summary]);
-  const whyParagraphs = useMemo(() => toParagraphs(event?.whyItMatters), [event?.whyItMatters]);
+  const summaryParagraphs = useMemo(
+    () => toParagraphs(event?.summary),
+    [event?.summary],
+  );
+  const whyParagraphs = useMemo(
+    () => toParagraphs(event?.whyItMatters),
+    [event?.whyItMatters],
+  );
   const archiveLinks = useMemo(() => toLinks(event), [event]);
 
   // Accessibility + expected UX: Esc closes modal.
@@ -100,13 +113,17 @@ export default function OpenEventModal({ era, event, onClose }) {
             <div className="retro-meta text-[11px] uppercase tracking-[0.18em]">
               {era?.title || "Era"} | {era?.years || "Dates not set"}
             </div>
-            <h2 className="mt-2 text-xl font-bold leading-tight sm:text-2xl">{event?.title}</h2>
+            <h2 className="mt-2 text-xl font-bold leading-tight sm:text-2xl">
+              {event?.title}
+            </h2>
           </header>
 
           {/* Scrollable content section keeps footer/header visible for long articles. */}
           <section className="overflow-y-auto px-4 py-4 sm:px-6 sm:py-5">
             {!!images.length && (
-              <div className={`mb-5 grid gap-3 ${hasSingleImage ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}>
+              <div
+                className={`mb-5 grid gap-3 ${hasSingleImage ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"}`}
+              >
                 {images.map((image) => (
                   <figure
                     key={image.src}
@@ -136,7 +153,9 @@ export default function OpenEventModal({ era, event, onClose }) {
             {!!summaryParagraphs.length && (
               <div className="retro-copy space-y-3 text-sm leading-relaxed sm:text-base">
                 {summaryParagraphs.map((paragraph, index) => (
-                  <p key={`${event?.id || "event"}-summary-${index}`}>{paragraph}</p>
+                  <p key={`${event?.id || "event"}-summary-${index}`}>
+                    {paragraph}
+                  </p>
                 ))}
               </div>
             )}
@@ -149,7 +168,9 @@ export default function OpenEventModal({ era, event, onClose }) {
                 </h3>
                 <div className="retro-copy mt-2 space-y-2 text-sm leading-relaxed">
                   {whyParagraphs.map((paragraph, index) => (
-                    <p key={`${event?.id || "event"}-why-${index}`}>{paragraph}</p>
+                    <p key={`${event?.id || "event"}-why-${index}`}>
+                      {paragraph}
+                    </p>
                   ))}
                 </div>
               </div>

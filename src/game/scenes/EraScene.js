@@ -308,46 +308,60 @@ export default function EraScene({
   ]);
 
   return (
-    <pixiContainer>
-      <pixiGraphics
-        draw={(g) => {
-          g.clear();
+    <div className="pointer-events-none absolute inset-0">
+      <svg
+        className="absolute inset-0 block"
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        preserveAspectRatio="none"
+      >
+        <line
+          x1={minX}
+          y1={baselineY}
+          x2={maxX}
+          y2={baselineY}
+          stroke="#7dd3fc"
+          strokeWidth="4"
+          strokeOpacity="0.88"
+        />
 
-          // Main horizontal timeline in the middle.
-          g.moveTo(minX, baselineY)
-            .lineTo(maxX, baselineY)
-            .stroke({ width: 4, color: 0x7dd3fc, alpha: 0.88 });
+        {branches.map((branch) => {
+          const isCurrentEra = branch.eraId === eraId;
+          const isNear = branch.id === nearBranchId;
+          const isActive = branch.id === activeBranchId;
 
-          for (const branch of branches) {
-            const isCurrentEra = branch.eraId === eraId;
-            const isNear = branch.id === nearBranchId;
-            const isActive = branch.id === activeBranchId;
+          return (
+            <g key={branch.id}>
+              <line
+                x1={branch.x}
+                y1={branch.startY}
+                x2={branch.x}
+                y2={branch.endY}
+                stroke={isCurrentEra ? "#f59e0b" : "#94a3b8"}
+                strokeWidth={isActive ? 4 : 2}
+                strokeOpacity={isNear || isActive ? 1 : 0.75}
+              />
+              <circle
+                cx={branch.x}
+                cy={branch.endY}
+                r="6"
+                fill="#fbbf24"
+                fillOpacity={branch.event ? 0.95 : 0.45}
+              />
+            </g>
+          );
+        })}
+      </svg>
 
-            g.moveTo(branch.x, branch.startY)
-              .lineTo(branch.x, branch.endY)
-              .stroke({
-                width: isActive ? 4 : 2,
-                color: isCurrentEra ? 0xf59e0b : 0x94a3b8,
-                alpha: isNear || isActive ? 1 : 0.75,
-              });
-
-            g.circle(branch.x, branch.endY, 6).fill({
-              color: 0xfbbf24,
-              alpha: branch.event ? 0.95 : 0.45,
-            });
-          }
+      <div
+        className="absolute h-6 w-6 rounded-full border-2 border-white bg-white shadow-[0_0_0_6px_rgba(56,189,248,0.28)]"
+        style={{
+          left: `${playerPos.x}px`,
+          top: `${playerPos.y}px`,
+          transform: "translate(-50%, -50%)",
         }}
       />
-
-      <pixiGraphics
-        x={playerPos.x}
-        y={playerPos.y}
-        draw={(g) => {
-          g.clear();
-          g.circle(0, 0, 12).fill(0xffffff);
-          g.circle(0, 0, 17).stroke({ width: 2, color: 0x38bdf8, alpha: 0.28 });
-        }}
-      />
-    </pixiContainer>
+    </div>
   );
 }
