@@ -320,12 +320,7 @@ export const EVENTS_BY_ERA = {
       ],
       sources: [
         {
-          label: "Constitutional Act, 1791",
-          href: "https://www.thecanadianencyclopedia.ca/en/article/constitutional-act-1791",
-          note: 'Tousignant, Pierre. "Constitutional Act, 1791". The Canadian Encyclopedia, 23 April 2020, Historica Canada. Accessed 15 February 2026.',
-        },
-        {
-          label: "Royal Proclamation, King George III of England",
+          label: "Image : Royal Proclamation, King George III of England",
           note: "Issued October 7, 1763. Broadside. Library and Archives Canada / e010778430.",
         },
       ],
@@ -348,6 +343,14 @@ export const EVENTS_BY_ERA = {
           alt: "Quebec Act of 1774",
         },
       ],
+
+      sources: [
+        {
+          label: "Quebec Act, 1774",
+          href: "https://thecanadianencyclopedia.ca/en/article/quebec-act",
+          note: 'Dagenais, Maxime. "Quebec Act, 1774". The Canadian Encyclopedia, 11 May 2020, Historica Canada. Accessed 15 February 2026.',
+        },
+      ],
     },
     {
       id: "era3-3",
@@ -365,6 +368,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_3_images/constitutional_act_1791.jpg",
           alt: "Constitutional Act 1791",
+        },
+      ],
+      sources: [
+        {
+          label: "Constitutional Act, 1791",
+          href: "https://www.thecanadianencyclopedia.ca/en/article/constitutional-act-1791",
+          note: 'Tousignant, Pierre. "Constitutional Act, 1791". The Canadian Encyclopedia, 23 April 2020, Historica Canada. Accessed 15 February 2026.',
         },
       ],
     },
@@ -386,6 +396,12 @@ export const EVENTS_BY_ERA = {
           alt: "War of 1812",
         },
       ],
+      sources: [
+        {
+          label: "Image: The Battle of New Orleans",
+          note: "This painting by Edward Percy Moran depicts the last major confrontation of the War of 1812, the Battle of New Orleans. The battle is best remembered for General Andrew Jackson's stiff resistance to British incursion and for the death of British Major General Edward Pakenham.(courtesy Library of Congress / LC-USZC2-3796)",
+        },
+      ],
     },
     {
       id: "era3-5",
@@ -403,6 +419,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_3_images/rebellions_1837.jpg",
           alt: "Rebellions of 1837–1838",
+        },
+      ],
+      sources: [
+        {
+          label:
+            "Image: attle of St. Eustache Front view of the Church of St. Eustache Occupied by the Insurgents. ",
+          note: "The Artillery Forcing an Entrance, Artist: Lord Charles Beauclerk, 14 December 1837. Bound in volume entitled, 'Lithographic Views of Military Operations in Canada'. A. Flint: London, 1840. Library and Archives Canada, Acc. No. 1992-566-2",
         },
       ],
     },
@@ -538,6 +561,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_4_images/canada_enters_ww1_1914.jpg",
           alt: "Canada enters World War I (1914)",
+        },
+      ],
+      sources: [
+        {
+          label: "Act of Union",
+          href: "https://thecanadianencyclopedia.ca/en/article/act-of-union",
+          note: 'Monet, S.J., Jacques. "Act of Union". The Canadian Encyclopedia, 27 September 2019, Historica Canada. Accessed 15 February 2026.',
         },
       ],
     },
