@@ -2,7 +2,7 @@
 
 :root {
   /* Base app tokens. */
-  --background: #ffffff;
+  --background: #ececec;
   --foreground: #171717;
 
   /* Retro theme tokens used by modal and reusable UI blocks. */
@@ -17,6 +17,7 @@
   --retro-button-bg: #f5cc4b;
   --retro-button-bg-hover: #ffe080;
   --retro-pixel-grid: rgb(0 0 0 / 0.08);
+  --canadian-red: #dc3b32;
 }
 
 /* Tailwind v4 theme bridge: exposes CSS variables as utility tokens. */
@@ -34,8 +35,19 @@
   }
 }
 
+html,
 body {
+  height: 100%;
+}
+
+html {
   background: var(--background);
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -174,15 +186,33 @@ body {
   image-rendering: crisp-edges;
 }
 
+/* Homepage background pan layer (scrolls slowly right-to-left). */
 .home-bg-scroll {
-  animation: home-pan 80s linear infinite;
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: 0 50%;
+  animation: home-pan 35s linear infinite;
+  will-change: background-position;
 }
 
 @keyframes home-pan {
   0% {
-    background-position: 0 bottom;
+    background-position: 0 50%;
   }
   100% {
-    background-position: -1600px bottom;
+    /* Move one full viewport-width to the left so speed
+       feels consistent on all screen sizes. */
+    background-position: -100vw 50%;
   }
+}
+
+/* Canadian red hover effects */
+a:hover,
+button:hover {
+  color: var(--canadian-red);
+}
+
+.group:hover {
+  border-color: var(--canadian-red) !important;
+  box-shadow: 0 0 12px rgba(220, 59, 50, 0.6) !important;
 }

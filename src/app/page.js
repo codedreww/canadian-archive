@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Press_Start_2P } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import { ERAS } from "@/game/data/eras";
 
-const pixel = Press_Start_2P({
+const pixel = Geist_Mono({
   weight: "400",
   subsets: ["latin"],
 });
@@ -40,11 +40,23 @@ const HOME_DATA = {
   },
 };
 
-function MapleLeaf({ className = "h-7 w-7 text-[#dc3b32]" }) {
+const ERA_ACCENTS = {
+  era1: "#2b8a6e",
+  era2: "#33658a",
+  era3: "#5d4e89",
+  era4: "#9b6b2f",
+  era5: "#9b2f2f",
+  era6: "#2f6f9b",
+};
+
+function MapleLeaf({ className = "h-7 w-7" }) {
   return (
-    <svg viewBox="0 0 512 512" className={className} fill="currentColor" aria-hidden="true">
-      <path d="M256 8l-36 118-103-52 24 118-117 29 86 88-67 95 116-20 6 120h91l6-120 116 20-67-95 86-88-117-29 24-118-103 52z" />
-    </svg>
+    <img
+      src="/home/maple-leaf.png"
+      alt="Maple leaf"
+      className={`${className} [image-rendering:pixelated]`}
+      draggable={false}
+    />
   );
 }
 
@@ -54,18 +66,29 @@ function EraCard({ era }) {
     dates: era.years,
     image: "/home/cards/era1.png",
   };
+  const accent = ERA_ACCENTS[era.id] ?? "#364152";
 
   return (
     <Link
       href={`/era/${era.id}`}
-      className="group block overflow-hidden border-[6px] border-[#6e3d2e] bg-[#f4ead8] shadow-[0_0_0_4px_#aa4434] transition duration-150 hover:scale-[1.02] hover:shadow-[0_0_0_4px_#e25c48,0_0_18px_2px_rgba(226,92,72,0.55)]"
+      className="group retro-panel retro-copy block overflow-hidden transition duration-150"
+      style={{ borderColor: accent }}
     >
-      <div className="h-[15.5rem] border-b-[6px] border-[#6e3d2e] bg-[#b9c9d4]">
-        <img src={home.image} alt={home.title} className="h-full w-full object-cover [image-rendering:pixelated]" />
+      <p className="px-4 py-2 text-left text-base font-bold leading-relaxed text-[#1c1f26]">{home.dates}</p>
+      <div className="retro-frame border-0 border-b-4 p-0" style={{ borderBottomColor: accent }}>
+        <img
+          src={home.image}
+          alt={home.title}
+          className="retro-pixel-image h-[15.5rem] w-full object-cover"
+        />
       </div>
-      <div className="bg-[#f6eee1] px-4 py-4">
-        <h2 className={`${pixel.className} text-sm leading-relaxed text-[#16213b]`}>{home.title}</h2>
-        <p className={`${pixel.className} mt-2 text-xs text-[#3b4d66]`}>{home.dates}</p>
+      <div className="relative overflow-hidden px-4 py-4">
+        <div className="retro-scanlines pointer-events-none absolute inset-0 opacity-20" />
+        <div className="relative">
+          
+          <h2 className="text-lg font-bold leading-relaxed text-[#1c1f26]">{home.title}</h2>
+          {/* <p className="retro-meta mt-2 text-xs font-semibold">Enter Era</p> */}
+        </div>
       </div>
     </Link>
   );
@@ -73,27 +96,25 @@ function EraCard({ era }) {
 
 export default function HomePage() {
   return (
-    <div className={`${pixel.className} relative min-h-screen overflow-hidden bg-[#f7e7cf] text-[#12203d]`}>
+    <div className={`${pixel.className} relative min-h-screen bg-[#ececec] text-[#171717]`}>
       <div
-        className="home-bg-scroll pointer-events-none absolute inset-0 opacity-70"
+        className="home-bg-scroll pointer-events-none fixed inset-0"
         style={{
-          backgroundImage: "url('/home/bg-landscape.png')",
-          backgroundRepeat: "repeat-x",
-          backgroundSize: "1600px auto",
-          backgroundPosition: "center bottom",
+          backgroundImage: "url('/home/homepage_bg.png')",
+          
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(247,231,207,0.65)_0%,rgba(247,231,207,0.3)_40%,rgba(247,231,207,0.8)_100%)]" />
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(180deg,rgba(236,236,236,0.55)_0%,rgba(236,236,236,0.25)_45%,rgba(236,236,236,0.7)_100%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-6 pt-8 md:px-8">
         <header className="py-7 text-center">
-          <h1 className="mx-auto inline-flex items-center gap-3 border-[6px] border-[#6e3d2e] bg-[#f7efe2] px-4 py-3 text-xl text-[#101c3a] shadow-[0_0_0_4px_#aa4434] md:text-3xl">
+          <h1 className="mx-auto inline-flex items-center gap-3 border-[4px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-3 text-2xl font-semibold tracking-wide text-[#171717] md:text-4xl">
             <MapleLeaf />
             Canadian Archive
             <MapleLeaf />
           </h1>
-          <p className="mx-auto mt-5 max-w-4xl text-[10px] leading-loose text-[#33445d] md:text-xs">
-            Step through Canada's defining eras and uncover the stories that shaped a nation.
+          <p className="mx-auto mt-5 inline-block max-w-4xl border-[2px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-2 text-sm font-semibold leading-relaxed text-[#1c1f26] md:text-base">
+            Step through Canada's defining eras and uncover the stories that shaped a nation
           </p>
         </header>
 
@@ -105,10 +126,10 @@ export default function HomePage() {
           </div>
         </main>
 
-        <footer className="mt-7 border-[6px] border-[#6e3d2e] bg-[#f7efe2] px-4 py-3 text-[10px] text-[#33445d] shadow-[0_0_0_4px_#aa4434] md:text-xs">
+        <footer className="mt-7 border-[4px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-3 text-[12px] text-[#364152] md:text-sm">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <span>(c) 2026 Canadian Archive</span>
-            <Link href="/team" className="text-[#bf3a32] hover:underline">
+            <Link href="/team" className="text-[#dc3b32]">
               Developers: Andrew, Sagesse, Namy, Chris, Cellou
             </Link>
           </div>
