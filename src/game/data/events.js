@@ -247,8 +247,192 @@ export const EVENTS_BY_ERA = {
     images: [{ src: "/eras_2_images/plains_of_abraham_1759.jpg", alt: "Plains of Abraham (1759)" }],
   },
 ],
-  era3: [],
-  era4: [],
+  era3: [
+    {
+    id: "era3-1",
+    title: "Royal Proclamation of 1763",
+    x: 90,
+    y: 150,
+    summary:
+      "After the Seven Years’ War, Britain issued the Royal Proclamation of 1763, claiming much of North America and setting rules for governing new territories. It also recognized Indigenous land rights west of the Appalachian Mountains and required treaties before settlement.",
+    whyItMatters: [
+      "Shaped British–Indigenous relations and treaty processes.",
+      "Established early frameworks for colonial governance.",
+      "Laid foundations for Canada’s constitutional development.",
+    ],
+    images: [
+      { src: "/eras_3_images/royal_proclamation_1763.jpg", alt: "Royal Proclamation of 1763" }
+    ],
+  },
+  {
+    id: "era3-2",
+    title: "Quebec Act (1774)",
+    x: 210,
+    y: 540,
+    summary:
+      "The Quebec Act guaranteed freedom of worship for Catholics and restored French civil law and property rights to secure loyalty of the French-speaking population in Quebec under British rule.",
+    whyItMatters: [
+      "Protected French language, religion, and legal traditions.",
+      "Strengthened loyalty of French Canadians to Britain.",
+      "Influenced tensions leading to the American Revolutionary War.",
+    ],
+    images: [
+      { src: "/eras_3_images/quebec_act_1774.jpg", alt: "Quebec Act of 1774" }
+    ],
+  },
+  {
+    id: "era3-3",
+    title: "Constitutional Act (1791)",
+    x: 330,
+    y: 160,
+    summary:
+      "The Constitutional Act divided Quebec into Upper Canada and Lower Canada, each with its own elected assembly, marking the beginning of representative government in British North America.",
+    whyItMatters: [
+      "Introduced representative government structures.",
+      "Created separate English and French political regions.",
+      "Influenced later political reforms and self-government.",
+    ],
+    images: [
+      { src: "/eras_3_images/constitutional_act_1791.jpg", alt: "Constitutional Act 1791" }
+    ],
+  },
+  {
+    id: "era3-4",
+    title: "War of 1812 (1812–1814)",
+    x: 450,
+    y: 530,
+    summary:
+      "The War of 1812 was fought between the United States and Great Britain, with battles occurring across Upper and Lower Canada, the Great Lakes, and Atlantic regions.",
+    whyItMatters: [
+      "Helped preserve British North America from U.S. annexation.",
+      "Strengthened a distinct Canadian identity.",
+      "Demonstrated cooperation between British forces, settlers, and Indigenous allies.",
+    ],
+    images: [
+      { src: "/eras_3_images/war_of_1812.jpg", alt: "War of 1812" }
+    ],
+  },
+  {
+    id: "era3-5",
+    title: "Rebellions of 1837–1838",
+    x: 570,
+    y: 170,
+    summary:
+      "Uprisings in Upper and Lower Canada led by reformers protesting political corruption and lack of responsible government. Though suppressed, they exposed weaknesses in colonial governance.",
+    whyItMatters: [
+      "Revealed demand for political reform and self-government.",
+      "Led to the Durham Report and calls for responsible government.",
+      "Influenced the evolution of democratic institutions in Canada.",
+    ],
+    images: [
+      { src: "/eras_3_images/rebellions_1837.jpg", alt: "Rebellions of 1837–1838" }
+    ],
+  },
+  {
+    id: "era3-6",
+    title: "Act of Union (1840)",
+    x: 690,
+    y: 550,
+    summary:
+      "The Act of Union merged Upper and Lower Canada into the Province of Canada with a single legislature, aiming to unify governance and eventually leading toward responsible government.",
+    whyItMatters: [
+      "United Upper and Lower Canada into one political entity.",
+      "Paved the way for responsible government reforms.",
+      "Set the stage for cooperation between French and English political leaders.",
+    ],
+    images: [
+      { src: "/eras_3_images/act_of_union_1840.jpg", alt: "Act of Union 1840" }
+    ],
+  },
+  ],
+  era4: [
+   {
+    id: "era4-1",
+    title: "Canadian Confederation (1867)",
+    x: 90,
+    y: 150,
+    summary:
+      "In 1867, Canada became a country when Ontario, Quebec, Nova Scotia, and New Brunswick united to form the Dominion of Canada.",
+    whyItMatters: [
+      "Marks the formation of Canada as a self-governing dominion.",
+      "Created the foundation for federal government and national expansion.",
+      "A key turning point in Canadian political identity.",
+    ],
+    images: [{ src: "/eras_4_images/confederation_1867.jpg", alt: "Canadian Confederation (1867)" }],
+  },
+  {
+    id: "era4-2",
+    title: "Indian Act Passed (1876)",
+    x: 210,
+    y: 540,
+    summary:
+      "In 1876, the Indian Act gave the Canadian government extensive control over many aspects of Indigenous peoples’ governance, land, and daily life.",
+    whyItMatters: [
+      "A major law shaping Indigenous–Crown relations in Canada.",
+      "Affected governance systems and control over reserve lands.",
+      "Its impacts continue to be felt today.",
+    ],
+    images: [{ src: "/eras_4_images/indian_act_1876.jpg", alt: "Indian Act (1876)" }],
+  },
+  {
+    id: "era4-3",
+    title: "Residential School System Expansion (1883)",
+    x: 330,
+    y: 160,
+    summary:
+      "Beginning in the 1880s, the government expanded church-run residential schools to assimilate Indigenous children and suppress Indigenous languages and cultures.",
+    whyItMatters: [
+      "Explains a major policy that caused long-term harm to Indigenous communities.",
+      "Central to understanding colonial institutions in Canada.",
+      "Important for truth, education, and reconciliation.",
+    ],
+    images: [{ src: "/eras_4_images/residential_schools_1883.jpg", alt: "Residential school system expansion (1883)" }],
+  },
+  {
+    id: "era4-4",
+    title: "Banff National Park Established (1885)",
+    x: 450,
+    y: 530,
+    summary:
+      "In 1885, Banff became Canada’s first national park after hot springs were discovered near the Rocky Mountains, helping grow tourism and conservation.",
+    whyItMatters: [
+      "Canada’s first national park and a major conservation milestone.",
+      "Helped shape tourism and rail expansion in Western Canada.",
+      "Set a precedent for future protected areas.",
+    ],
+    images: [{ src: "/eras_4_images/banff_national_park_1885.jpg", alt: "Banff National Park (1885)" }],
+  },
+  {
+    id: "era4-5",
+    title: "Alberta and Saskatchewan Become Provinces (1905)",
+    x: 570,
+    y: 170,
+    summary:
+      "In 1905, Alberta and Saskatchewan officially joined Confederation as provinces, expanding Canada’s governance across the Prairies.",
+    whyItMatters: [
+      "Represents major westward growth and nation-building.",
+      "Shaped Prairie settlement, government, and economy.",
+      "A key step in building modern Canada’s provinces.",
+    ],
+    images: [{ src: "/eras_4_images/alberta_saskatchewan_1905.jpg", alt: "Alberta and Saskatchewan become provinces (1905)" }],
+  },
+  {
+    id: "era4-6",
+    title: "Canada Enters World War I (1914)",
+    x: 690,
+    y: 550,
+    summary:
+      "In 1914, Canada entered World War I after Britain declared war, beginning a major period of military mobilization and global involvement.",
+    whyItMatters: [
+      "A turning point in Canada’s national identity and international role.",
+      "Led to major social, political, and economic changes at home.",
+      "Sets up the next era’s major war-related events and impacts.",
+    ],
+    images: [{ src: "/eras_4_images/canada_enters_ww1_1914.jpg", alt: "Canada enters World War I (1914)" }],
+  },
+
+
+  ],
   era5: [
     {
       id: "era5-1",
