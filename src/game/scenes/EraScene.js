@@ -324,12 +324,14 @@ export default function EraScene({
             const isActive = branch.id === activeBranchId;
 
             g.moveTo(branch.x, branch.startY)
-              .lineTo(branch.x, branch.endY)
-              .stroke({
-                width: isActive ? 4 : 2,
-                color: isCurrentEra ? 0xf59e0b : 0x94a3b8,
-                alpha: isNear || isActive ? 1 : 0.75,
-              });
+  .lineTo(branch.x, branch.endY)
+  .stroke({
+    width: isActive ? 8 : 5,
+    color: isCurrentEra
+      ? (selectedEra?.pathColor ?? 0xf59e0b)
+      : 0x94a3b8,
+    alpha: isNear || isActive ? 1 : 0.85,
+  });
 
             g.circle(branch.x, branch.endY, 6).fill({
               color: 0xfbbf24,

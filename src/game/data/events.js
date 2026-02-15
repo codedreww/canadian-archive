@@ -549,29 +549,116 @@ export const EVENTS_BY_ERA = {
   ],
   era6: [
     {
-      id: "era6-1",
-      title: "Post-war Immigration Boom",
-      x: 260,
-      y: 180,
-      images: [{ src: "/eras_6_images/world_wars_era.png", alt: "Test image 1", caption: "Caption 1" }],
-      summary:
-        "After 1945, Canada saw major immigration shifts that reshaped cities, culture, and policy.",
-    },
-    {
-      id: "era6-2",
-      title: "Multiculturalism Policy",
-      x: 520,
-      y: 260,
-      summary:
-        "Canada adopted multiculturalism as policy, influencing identity, institutions, and public life.",
-    },
-    {
-      id: "era6-3",
-      title: "Constitution Act, 1982",
-      x: 720,
-      y: 360,
-      summary:
-        "The Constitution was patriated and the Charter of Rights and Freedoms was introduced.",
-    },
+    id: "era6-1",
+    title: "Canadian Citizenship Act (1947)",
+    x: 90,
+    y: 150,
+    summary:
+      "The Canadian Citizenship Act created a distinct Canadian citizenship for the first time, allowing people to hold a national identity separate from British subject status.",
+    whyItMatters: [
+      "Established a unique Canadian national identity.",
+      "Marked a shift toward full legal independence.",
+      "Strengthened the idea of Canadian citizenship and belonging.",
+    ],
+    images: [
+      { src: "/eras_6_images/citizenship_act_1947.jpg", alt: "Canadian Citizenship Act 1947" }
+    ],
+  },
+  {
+    id: "era6-2",
+    title: "Alouette 1 Satellite (1962)",
+    x: 210,
+    y: 540,
+    summary:
+      "Canada launched Alouette 1 in 1962, becoming the third nation in the world to design and build its own satellite and entering the space age.",
+    whyItMatters: [
+      "Showcased Canadian innovation in science and technology.",
+      "Advanced research on the ionosphere and communications.",
+      "Positioned Canada as a leader in space research.",
+    ],
+    images: [
+      { src: "/eras_6_images/alouette_1_1962.jpg", alt: "Alouette 1 Satellite 1962" }
+    ],
+  },
+  {
+    id: "era6-3",
+    title: "Universal Healthcare (Medical Care Act, 1966)",
+    x: 330,
+    y: 160,
+    summary:
+      "The Medical Care Act of 1966 established universal healthcare in Canada, ensuring access to essential medical services regardless of income.",
+    whyItMatters: [
+      "Made healthcare a fundamental right for Canadians.",
+      "Reduced inequality in access to medical services.",
+      "Became a defining feature of Canadian social policy.",
+    ],
+    images: [
+      { src: "/eras_6_images/universal_healthcare_1966.jpg", alt: "Universal Healthcare Canada 1966" }
+    ],
+  },
+  {
+    id: "era6-4",
+    title: "Constitution Act & Charter of Rights (1982)",
+    x: 450,
+    y: 530,
+    summary:
+      "The Constitution Act of 1982 gave Canada full legal independence from Britain and introduced the Canadian Charter of Rights and Freedoms.",
+    whyItMatters: [
+      "Completed Canada’s constitutional independence.",
+      "Protected fundamental rights and freedoms.",
+      "Strengthened democratic governance and rule of law.",
+    ],
+    images: [
+      { src: "/eras_6_images/constitution_act_1982.jpg", alt: "Constitution Act 1982 and Charter of Rights" }
+    ],
+  },
+  {
+    id: "era6-5",
+    title: "Calgary Winter Olympics (1988)",
+    x: 570,
+    y: 170,
+    summary:
+      "Calgary hosted the 1988 Winter Olympics, marking Canada’s first time hosting the Winter Games and boosting national pride and global recognition.",
+    whyItMatters: [
+      "Put Calgary on the global stage for sports and tourism.",
+      "Boosted infrastructure and economic development.",
+      "Strengthened national unity through international sport.",
+    ],
+    images: [
+      { src: "/eras_6_images/calgary_olympics_1988.jpg", alt: "Calgary Winter Olympics 1988" }
+    ],
+  },
+  {
+    id: "era6-6",
+    title: "Archie Search Engine (1990)",
+    x: 690,
+    y: 550,
+    summary:
+      "Developed at McGill University, Archie became the world’s first internet search engine, transforming how information could be located online.",
+    whyItMatters: [
+      "Pioneered search technology on the early internet.",
+      "Influenced how modern search engines function today.",
+      "Highlighted Canada’s contribution to global computing innovation.",
+    ],
+    images: [
+      { src: "/eras_6_images/archie_search_engine_1990.jpg", alt: "Archie Search Engine 1990" }
+    ],
+  },
+  {
+    id: "era6-7",
+    title: "Invention of Java (1995)",
+    x: 810,
+    y: 155,
+    summary:
+      "James Gosling, a University of Calgary alumnus, released Java in 1995, a programming language that now powers billions of devices worldwide.",
+    whyItMatters: [
+      "Revolutionized software development and cross-platform applications.",
+      "Became one of the most widely used programming languages globally.",
+      "Showcased Canadian influence on global technology innovation.",
+    ],
+    images: [
+      { src: "/eras_6_images/java_1995.jpg", alt: "Java programming language release 1995" }
+    ],
+  },
   ],
 };
