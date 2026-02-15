@@ -112,7 +112,8 @@ export default function EraChatbot({ era }) {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onFocus={handleFocus}
-                    placeholder="Ask a question about Canadian history."
+                    placeholder="e.g. “How did this era shape Canada?”
+"
                   />
                   <div className="flex items-center justify-end gap-2">
                     <button
