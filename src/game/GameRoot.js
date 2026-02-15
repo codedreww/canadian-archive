@@ -3,7 +3,7 @@
 
   PURPOSE:
   Main runtime wrapper for the Pixi game inside an era page.
-  Owns global game state: prompt, which event is open, pause state.
+  Owns global game state: event modal selection + node focus overlay.
 */
 
 "use client";
@@ -11,11 +11,10 @@
 import { useEffect, useRef, useState } from "react";
 import EraScene from "./scenes/EraScene";
 import HUD from "@/ui/HUD";
+import NodeInfoCard from "@/ui/NodeInfoCard";
 import OpenEventModal from "@/ui/OpenEventModal";
 import { ERAS } from "@/game/data/eras";
 import { EVENTS_BY_ERA } from "@/game/data/events";
-
-const DEFAULT_PROMPT = "Explore: A/D to move, W/S at a branch";
 
 export default function GameRoot({ era }) {
   const wrapperRef = useRef(null);
@@ -54,13 +53,34 @@ export default function GameRoot({ era }) {
   }, []);
 
   const [activeSelection, setActiveSelection] = useState(null);
-  const [prompt, setPrompt] = useState(DEFAULT_PROMPT);
+  const [nodeFocus, setNodeFocus] = useState(null);
+  const [visibleNodeFocus, setVisibleNodeFocus] = useState(null);
   const paused = Boolean(activeSelection);
 
+  useEffect(() => {
+    let timeoutId = null;
+    const nextId = nodeFocus?.event?.id ?? null;
+    const currentId = visibleNodeFocus?.event?.id ?? null;
+
+    if (nodeFocus) {
+      // Delay first reveal to avoid card flicker while crossing trigger edges.
+      const delay = !visibleNodeFocus || nextId !== currentId ? 140 : 0;
+      timeoutId = window.setTimeout(() => setVisibleNodeFocus(nodeFocus), delay);
+    } else if (visibleNodeFocus) {
+      // Keep card briefly when leaving node radius to avoid rapid hide/show jitter.
+      timeoutId = window.setTimeout(() => setVisibleNodeFocus(null), 220);
+    }
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, [nodeFocus, visibleNodeFocus]);
+
+  const displayedNodeFocus = paused ? null : visibleNodeFocus;
+
   return (
-    
-    <div 
-      ref={wrapperRef} 
+    <div
+      ref={wrapperRef}
       className="relative h-screen w-screen overflow-hidden"
       style={{
         backgroundImage: `url(${era?.background})`,
@@ -76,12 +96,13 @@ export default function GameRoot({ era }) {
           eras={ERAS}
           eventsByEra={EVENTS_BY_ERA}
           paused={paused}
-          onPromptChange={setPrompt}
+          onNodeFocusChange={setNodeFocus}
           onOpenEvent={setActiveSelection}
         />
       )}
 
-      <HUD era={era} prompt={prompt} />
+      <HUD era={era} />
+      <NodeInfoCard focus={displayedNodeFocus} />
 
       <OpenEventModal
         era={activeSelection?.era ?? era}

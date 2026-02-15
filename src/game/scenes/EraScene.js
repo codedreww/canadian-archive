@@ -5,15 +5,22 @@ import useKeyboard from "../systems/useKeyboard";
 
 const MAX_EVENTS_PER_ERA = 10;
 const MIN_EVENTS_PER_ERA = 1;
-const HORIZONTAL_SPEED = 3.4;
-const VERTICAL_SPEED = 2.8;
+const HORIZONTAL_SPEED = 2.6;
+const VERTICAL_SPEED = 2.1;
 const BRANCH_ENTER_RADIUS = 18;
 const BRANCH_EXIT_RADIUS = 28;
 const ENDPOINT_RADIUS = 7;
-const DEFAULT_PROMPT = "Explore: A/D to move, W/S at a branch";
+const NODE_INFO_ENTER_DISTANCE = 44;
+const NODE_INFO_EXIT_DISTANCE = 62;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
+}
+
+function isSameNodeFocus(a, b) {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  return a.event?.id === b.event?.id && a.atNode === b.atNode;
 }
 
 export default function EraScene({
@@ -24,7 +31,7 @@ export default function EraScene({
   eventsByEra = {},
   paused = false,
   onOpenEvent,
-  onPromptChange,
+  onNodeFocusChange,
 }) {
   const keys = useKeyboard();
   const baselineY = Math.round(height * 0.5);
@@ -90,17 +97,18 @@ export default function EraScene({
   const [activeBranchId, setActiveBranchId] = useState(null);
   const [nearBranchId, setNearBranchId] = useState(null);
   const nearBranchIdRef = useRef(null);
-  const promptRef = useRef(null);
+  const nearNodeBranchIdRef = useRef(null);
+  const nodeFocusRef = useRef(null);
   const interactionLatchRef = useRef(false);
   const prevPausedRef = useRef(paused);
 
-  const updatePrompt = useCallback(
+  const updateNodeFocus = useCallback(
     (value) => {
-      if (promptRef.current === value) return;
-      promptRef.current = value;
-      onPromptChange?.(value);
+      if (isSameNodeFocus(nodeFocusRef.current, value)) return;
+      nodeFocusRef.current = value;
+      onNodeFocusChange?.(value);
     },
-    [onPromptChange]
+    [onNodeFocusChange]
   );
 
   useEffect(() => {
@@ -124,7 +132,8 @@ export default function EraScene({
           setActiveBranchId(null);
           nearBranchIdRef.current = null;
           setNearBranchId(null);
-          updatePrompt(DEFAULT_PROMPT);
+          nearNodeBranchIdRef.current = null;
+          updateNodeFocus(null);
         }
         interactionLatchRef.current = false;
       }
@@ -143,6 +152,11 @@ export default function EraScene({
             playerRef.current.y = baselineY;
             setPlayerPos({ x: playerRef.current.x, y: baselineY });
           }
+
+          if (nearNodeBranchIdRef.current !== null) {
+            nearNodeBranchIdRef.current = null;
+          }
+          updateNodeFocus(null);
 
           const left = keys.current.a || keys.current.arrowleft;
           const right = keys.current.d || keys.current.arrowright;
@@ -192,14 +206,7 @@ export default function EraScene({
             setNearBranchId(nearId);
           }
 
-          let nextPrompt = DEFAULT_PROMPT;
           if (nearBranch) {
-            if (nearBranch.direction < 0) {
-              nextPrompt = "Press W/Up to climb branch";
-            } else {
-              nextPrompt = "Press S/Down to climb branch";
-            }
-
             const goUp = keys.current.w || keys.current.arrowup;
             const goDown = keys.current.s || keys.current.arrowdown;
             const wantsBranch =
@@ -213,19 +220,18 @@ export default function EraScene({
               setActiveBranchId(nearBranch.id);
             }
           }
-
-          updatePrompt(nextPrompt);
         } else {
           const branch = branchesById.get(activeBranchIdRef.current);
           if (!branch) {
             activeBranchIdRef.current = null;
             setActiveBranchId(null);
-            updatePrompt(DEFAULT_PROMPT);
+            nearNodeBranchIdRef.current = null;
+            updateNodeFocus(null);
             rafId = requestAnimationFrame(tick);
             return;
           }
 
-          // lock x on current branch
+          // Lock x on current branch.
           if (playerRef.current.x !== branch.x) {
             playerRef.current.x = branch.x;
             setPlayerPos({ x: branch.x, y: playerRef.current.y });
@@ -269,21 +275,30 @@ export default function EraScene({
             if (!goUp && !goDown) {
               activeBranchIdRef.current = null;
               setActiveBranchId(null);
-              updatePrompt(DEFAULT_PROMPT);
+              nearNodeBranchIdRef.current = null;
+              updateNodeFocus(null);
             }
           }
 
           const atEnd = Math.abs(playerRef.current.y - branch.endY) <= ENDPOINT_RADIUS;
-          let nextPrompt = null;
-          if (atEnd) {
-            nextPrompt = branch.event
-              ? `Press Space • ${branch.event.title}`
-              : "No event assigned for this branch";
-          } else {
-            nextPrompt = "W/S to move on branch";
-          }
+          const distanceToEnd = Math.abs(playerRef.current.y - branch.endY);
+          const holdingNodeRadius = nearNodeBranchIdRef.current === branch.id;
+          const nodeRadius = holdingNodeRadius
+            ? NODE_INFO_EXIT_DISTANCE
+            : NODE_INFO_ENTER_DISTANCE;
 
-          updatePrompt(nextPrompt);
+          const nearNode =
+            Boolean(branch.event) &&
+            (distanceToEnd <= nodeRadius || activeBranchIdRef.current === branch.id);
+          if (nearNode) {
+            nearNodeBranchIdRef.current = branch.id;
+            updateNodeFocus({ event: branch.event, atNode: atEnd });
+          } else {
+            if (holdingNodeRadius) {
+              nearNodeBranchIdRef.current = null;
+            }
+            updateNodeFocus(null);
+          }
 
           if (atEnd && branch.event && keys.current.space && !interactionLatchRef.current) {
             interactionLatchRef.current = true;
@@ -308,19 +323,20 @@ export default function EraScene({
     rafId = requestAnimationFrame(tick);
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
+      updateNodeFocus(null);
     };
   }, [
     baselineY,
     branches,
     branchesById,
+    height,
     keys,
     maxX,
     minX,
     onOpenEvent,
     paused,
-    height,
     selectedEra,
-    updatePrompt,
+    updateNodeFocus,
   ]);
 
   return (
