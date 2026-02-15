@@ -173,3 +173,16 @@ body {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+
+.home-bg-scroll {
+  animation: home-pan 80s linear infinite;
+}
+
+@keyframes home-pan {
+  0% {
+    background-position: 0 bottom;
+  }
+  100% {
+    background-position: -1600px bottom;
+  }
+}
