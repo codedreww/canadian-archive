@@ -212,7 +212,7 @@ body {
   background-repeat: repeat-x;
   background-size: cover;
   background-position: 0 50%;
-  animation: era-pan 50s linear infinite;
+  animation: era-pan 45s linear infinite;
   will-change: background-position;
 }
 

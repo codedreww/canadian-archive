@@ -119,7 +119,7 @@ export default function HomePage() {
                     href={developer.href}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="text-[#dc3b32] underline-offset-2 transition-colors duration-150 hover:text-[#8f1f1b] hover:underline focus-visible:underline"
+                    className="inline-block font-semibold text-[#7c3a00] bg-[#fff4df] px-2 py-0.5 rounded-full shadow-sm border border-[#f5cc4b] underline-offset-2 transition-all duration-150 hover:bg-[#ffe080] hover:text-[#b45309] focus-visible:underline"
                   >
                     {developer.name}
                   </a>
