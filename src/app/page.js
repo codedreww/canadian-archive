@@ -74,9 +74,7 @@ function EraCard({ era }) {
       className="group retro-panel retro-copy block overflow-hidden transition duration-150"
       style={{ borderColor: accent }}
     >
-      <div className="text-base font-bold leading-relaxed text-[#1c1f26] " style={{ borderBottomColor: accent }}>
-        {home.dates}
-      </div>
+      <p className="px-4 py-2 text-left text-base font-bold leading-relaxed text-[#1c1f26]">{home.dates}</p>
       <div className="retro-frame border-0 border-b-4 p-0" style={{ borderBottomColor: accent }}>
         <img
           src={home.image}
@@ -87,8 +85,9 @@ function EraCard({ era }) {
       <div className="relative overflow-hidden px-4 py-4">
         <div className="retro-scanlines pointer-events-none absolute inset-0 opacity-20" />
         <div className="relative">
-          <h2 className="text-base font-bold leading-relaxed text-[#1c1f26]">{home.title}</h2>
-          <p className="retro-meta mt-2 text-xs font-semibold">Enter Era</p>
+          
+          <h2 className="text-lg font-bold leading-relaxed text-[#1c1f26]">{home.title}</h2>
+          {/* <p className="retro-meta mt-2 text-xs font-semibold">Enter Era</p> */}
         </div>
       </div>
     </Link>
