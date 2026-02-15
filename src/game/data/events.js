@@ -28,34 +28,6 @@
 */
 
 export const EVENTS_BY_ERA = {
-  era6: [
-    {
-      id: "era6-1",
-      title: "Post-war Immigration Boom",
-      x: 260,
-      y: 180,
-      images: [{ src: "/eras_6_images/world_wars_era.png", alt: "Test image 1", caption: "Caption 1" }],
-      summary:
-        "After 1945, Canada saw major immigration shifts that reshaped cities, culture, and policy.",
-    },
-    {
-      id: "era6-2",
-      title: "Multiculturalism Policy",
-      x: 520,
-      y: 260,
-      summary:
-        "Canada adopted multiculturalism as policy, influencing identity, institutions, and public life.",
-    },
-    {
-      id: "era6-3",
-      title: "Constitution Act, 1982",
-      x: 720,
-      y: 360,
-      summary:
-        "The Constitution was patriated and the Charter of Rights and Freedoms was introduced.",
-    },
-  ],
-
   // other eras can be added later:
   era1: [],
   era2: [
@@ -144,7 +116,6 @@ export const EVENTS_BY_ERA = {
     images: [{ src: "/eras_2_images/plains_of_abraham_1759.jpg", alt: "Plains of Abraham (1759)" }],
   },
 ],
-
   era3: [],
   era4: [],
   era5: [
@@ -259,6 +230,33 @@ export const EVENTS_BY_ERA = {
         "Educates future generations to prevent similar discrimination.",
       ],
       images: [{src: "/eras_5_images/Internment_of_japanese_canadians.jpg", alt: "Internment of Japanese Canadians" }],
+    },
+  ],
+  era6: [
+    {
+      id: "era6-1",
+      title: "Post-war Immigration Boom",
+      x: 260,
+      y: 180,
+      images: [{ src: "/eras_6_images/world_wars_era.png", alt: "Test image 1", caption: "Caption 1" }],
+      summary:
+        "After 1945, Canada saw major immigration shifts that reshaped cities, culture, and policy.",
+    },
+    {
+      id: "era6-2",
+      title: "Multiculturalism Policy",
+      x: 520,
+      y: 260,
+      summary:
+        "Canada adopted multiculturalism as policy, influencing identity, institutions, and public life.",
+    },
+    {
+      id: "era6-3",
+      title: "Constitution Act, 1982",
+      x: 720,
+      y: 360,
+      summary:
+        "The Constitution was patriated and the Charter of Rights and Freedoms was introduced.",
     },
   ],
 };
