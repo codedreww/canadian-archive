@@ -22,18 +22,38 @@
 
 export default function HUD({ era, prompt }) {
   return (
-    <div className="pointer-events-none absolute inset-0">
-      <div className="absolute left-4 top-4 rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-white backdrop-blur">
-        <div className="text-xs text-white/60">Canadian Archive</div>
-        <div className="text-sm font-semibold">{era?.title}</div>
-        <div className="mt-1 text-xs text-white/70">
-          A/D on baseline, W/S on vertical branch
+    <div className="pointer-events-none absolute inset-0 z-20">
+      <div className="retro-panel absolute left-4 top-4 w-[min(92vw,460px)] overflow-hidden">
+        <div className="retro-bar px-3 py-2">
+          <div className="retro-meta text-[10px] uppercase tracking-[0.14em]">
+            Canadian Archive
+          </div>
+          <div className="retro-copy mt-1 text-xs font-bold uppercase leading-tight sm:text-sm">
+            {era?.title}
+          </div>
+          {era?.years && (
+            <div className="retro-copy retro-meta mt-1 text-[10px] uppercase tracking-[0.08em]">
+              {era.years}
+            </div>
+          )}
+        </div>
+        <div className="px-3 py-2">
+          <div className="retro-copy retro-meta text-[11px] sm:text-xs">
+            A/D on baseline, W/S on vertical branch
+          </div>
         </div>
       </div>
 
       {prompt && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-xl border border-white/10 bg-black/60 px-5 py-3 text-white backdrop-blur">
-          <div className="text-sm font-semibold">{prompt}</div>
+        <div className="retro-panel absolute bottom-6 left-1/2 w-[min(92vw,720px)] -translate-x-1/2 overflow-hidden">
+          <div className="retro-bar px-4 py-2">
+            <div className="retro-copy text-xs font-bold uppercase tracking-[0.1em]">
+              Action Prompt
+            </div>
+          </div>
+          <div className="px-4 py-2">
+            <div className="retro-copy text-sm leading-relaxed">{prompt}</div>
+          </div>
         </div>
       )}
     </div>

@@ -7,8 +7,10 @@ const MAX_EVENTS_PER_ERA = 10;
 const MIN_EVENTS_PER_ERA = 1;
 const HORIZONTAL_SPEED = 3.4;
 const VERTICAL_SPEED = 2.8;
-const BRANCH_ENTRY_RADIUS = 18;
+const BRANCH_ENTER_RADIUS = 18;
+const BRANCH_EXIT_RADIUS = 28;
 const ENDPOINT_RADIUS = 7;
+const DEFAULT_PROMPT = "Explore: A/D to move, W/S at a branch";
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -122,7 +124,7 @@ export default function EraScene({
           setActiveBranchId(null);
           nearBranchIdRef.current = null;
           setNearBranchId(null);
-          updatePrompt(null);
+          updatePrompt(DEFAULT_PROMPT);
         }
         interactionLatchRef.current = false;
       }
@@ -169,16 +171,30 @@ export default function EraScene({
             }
           }
 
-          const canEnter = nearest && bestDistance <= BRANCH_ENTRY_RADIUS;
-          const nearId = canEnter ? nearest.id : null;
+          const prevNearBranch = nearBranchIdRef.current
+            ? branchesById.get(nearBranchIdRef.current) ?? null
+            : null;
+
+          let nearBranch = null;
+          if (prevNearBranch) {
+            const distToPrev = Math.abs(prevNearBranch.x - playerRef.current.x);
+            if (distToPrev <= BRANCH_EXIT_RADIUS) {
+              nearBranch = prevNearBranch;
+            }
+          }
+          if (!nearBranch && nearest && bestDistance <= BRANCH_ENTER_RADIUS) {
+            nearBranch = nearest;
+          }
+
+          const nearId = nearBranch?.id ?? null;
           if (nearId !== nearBranchIdRef.current) {
             nearBranchIdRef.current = nearId;
             setNearBranchId(nearId);
           }
 
-          let nextPrompt = null;
-          if (canEnter) {
-            if (nearest.direction < 0) {
+          let nextPrompt = DEFAULT_PROMPT;
+          if (nearBranch) {
+            if (nearBranch.direction < 0) {
               nextPrompt = "Press W/Up to climb branch";
             } else {
               nextPrompt = "Press S/Down to climb branch";
@@ -187,14 +203,14 @@ export default function EraScene({
             const goUp = keys.current.w || keys.current.arrowup;
             const goDown = keys.current.s || keys.current.arrowdown;
             const wantsBranch =
-              (nearest.direction < 0 && goUp) ||
-              (nearest.direction > 0 && goDown);
+              (nearBranch.direction < 0 && goUp) ||
+              (nearBranch.direction > 0 && goDown);
 
             if (wantsBranch) {
-              activeBranchIdRef.current = nearest.id;
-              playerRef.current.x = nearest.x;
-              setPlayerPos({ x: nearest.x, y: playerRef.current.y });
-              setActiveBranchId(nearest.id);
+              activeBranchIdRef.current = nearBranch.id;
+              playerRef.current.x = nearBranch.x;
+              setPlayerPos({ x: nearBranch.x, y: playerRef.current.y });
+              setActiveBranchId(nearBranch.id);
             }
           }
 
@@ -204,7 +220,7 @@ export default function EraScene({
           if (!branch) {
             activeBranchIdRef.current = null;
             setActiveBranchId(null);
-            updatePrompt(null);
+            updatePrompt(DEFAULT_PROMPT);
             rafId = requestAnimationFrame(tick);
             return;
           }
@@ -253,7 +269,7 @@ export default function EraScene({
             if (!goUp && !goDown) {
               activeBranchIdRef.current = null;
               setActiveBranchId(null);
-              updatePrompt(null);
+              updatePrompt(DEFAULT_PROMPT);
             }
           }
 

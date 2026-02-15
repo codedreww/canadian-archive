@@ -15,6 +15,8 @@ import OpenEventModal from "@/ui/OpenEventModal";
 import { ERAS } from "@/game/data/eras";
 import { EVENTS_BY_ERA } from "@/game/data/events";
 
+const DEFAULT_PROMPT = "Explore: A/D to move, W/S at a branch";
+
 export default function GameRoot({ era }) {
   const wrapperRef = useRef(null);
 
@@ -52,7 +54,7 @@ export default function GameRoot({ era }) {
   }, []);
 
   const [activeSelection, setActiveSelection] = useState(null);
-  const [prompt, setPrompt] = useState(null);
+  const [prompt, setPrompt] = useState(DEFAULT_PROMPT);
   const paused = Boolean(activeSelection);
 
   return (
