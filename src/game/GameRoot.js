@@ -101,7 +101,7 @@ export default function GameRoot({ era }) {
   return (
     <div
       ref={wrapperRef}
-      className="relative h-screen w-screen overflow-hidden"
+      className="era-bg-scroll relative h-screen w-screen overflow-hidden"
       style={{
         backgroundImage: `url(${era?.background})`,
         backgroundSize: "cover",
