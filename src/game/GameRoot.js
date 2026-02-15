@@ -69,7 +69,16 @@ export default function GameRoot({ era }) {
     : appInstanceKey;
 
   return (
-    <div ref={wrapperRef} className="relative h-full w-full overflow-hidden">
+    
+    <div 
+      ref={wrapperRef} 
+      className="relative h-full w-full overflow-hidden"
+      style={{
+        backgroundImage: `url(${era?.background})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       {hasMeasuredSize && (
         <Application
           key={appKey}
@@ -81,7 +90,8 @@ export default function GameRoot({ era }) {
           autoStart
           sharedTicker={false}
           preference="webgl"
-          background={0x0b0f17}
+          background={0x000000}
+          backgroundAlpha={0}
         >
           <EraScene
             width={size.width}

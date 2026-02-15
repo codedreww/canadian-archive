@@ -312,7 +312,6 @@ export default function EraScene({
       <pixiGraphics
         draw={(g) => {
           g.clear();
-          g.rect(0, 0, width, height).fill(0x0a0f18);
 
           // Main horizontal timeline in the middle.
           g.moveTo(minX, baselineY)
