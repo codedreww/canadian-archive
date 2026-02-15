@@ -18,10 +18,7 @@ const PLAYER_SPRITE_WIDTH = 56;
 const PLAYER_SPRITE_HEIGHT = 96;
 const PLAYER_BOB_PX = 2;
 const PLAYER_SPRITES_BY_ERA = {
-  era3: [
-    "/sprites/era3/soldier_idle.svg",
-    "/sprites/era3/soldier_walk.svg",
-  ],
+  era3: ["/sprites/era3/soldier_idle.svg", "/sprites/era3/soldier_walk.svg"],
 };
 
 function clamp(value, min, max) {
@@ -56,11 +53,11 @@ export default function EraScene({
   const branchLength = clamp(
     Math.round(height * 0.26),
     56,
-    Math.max(56, Math.floor(height * 0.5) - 34)
+    Math.max(56, Math.floor(height * 0.5) - 34),
   );
   const selectedEra = useMemo(
     () => eras.find((era) => era.id === eraId) ?? eras[0] ?? null,
-    [eraId, eras]
+    [eraId, eras],
   );
 
   const branches = useMemo(() => {
@@ -70,7 +67,7 @@ export default function EraScene({
     const totalBranches = clamp(
       selectedEvents.length || 1,
       MIN_EVENTS_PER_ERA,
-      MAX_EVENTS_PER_ERA
+      MAX_EVENTS_PER_ERA,
     );
     const availableWidth = maxX - minX;
     const xGap = totalBranches > 1 ? availableWidth / (totalBranches - 1) : 0;
@@ -99,7 +96,7 @@ export default function EraScene({
 
   const branchesById = useMemo(
     () => new Map(branches.map((branch) => [branch.id, branch])),
-    [branches]
+    [branches],
   );
 
   const initialX = useMemo(() => {
@@ -107,7 +104,10 @@ export default function EraScene({
   }, [branches, width]);
 
   const playerRef = useRef({ x: initialX, y: baselineY });
-  const [playerPos, setPlayerPos] = useState(() => ({ x: initialX, y: baselineY }));
+  const [playerPos, setPlayerPos] = useState(() => ({
+    x: initialX,
+    y: baselineY,
+  }));
   const [playerFrameIndex, setPlayerFrameIndex] = useState(0);
   const [playerFacing, setPlayerFacing] = useState(1);
   const [isPlayerMoving, setIsPlayerMoving] = useState(false);
@@ -126,7 +126,7 @@ export default function EraScene({
 
   const playerFrames = useMemo(
     () => PLAYER_SPRITES_BY_ERA[selectedEra?.id] ?? null,
-    [selectedEra?.id]
+    [selectedEra?.id],
   );
   const usingSpritePlayer = Boolean(playerFrames?.length);
 
@@ -168,7 +168,7 @@ export default function EraScene({
       nodeFocusRef.current = value;
       onNodeFocusChange?.(value);
     },
-    [onNodeFocusChange]
+    [onNodeFocusChange],
   );
 
   useEffect(() => {
@@ -229,7 +229,7 @@ export default function EraScene({
             const nextX = clamp(
               playerRef.current.x + dir * HORIZONTAL_SPEED,
               minX,
-              maxX
+              maxX,
             );
             if (nextX !== playerRef.current.x) {
               playerRef.current.x = nextX;
@@ -249,7 +249,7 @@ export default function EraScene({
           }
 
           const prevNearBranch = nearBranchIdRef.current
-            ? branchesById.get(nearBranchIdRef.current) ?? null
+            ? (branchesById.get(nearBranchIdRef.current) ?? null)
             : null;
 
           let nearBranch = null;
@@ -311,7 +311,7 @@ export default function EraScene({
             const nextY = clamp(
               playerRef.current.y + step,
               branch.endY,
-              branch.startY
+              branch.startY,
             );
             if (nextY !== playerRef.current.y) {
               playerRef.current.y = nextY;
@@ -321,7 +321,7 @@ export default function EraScene({
             const nextY = clamp(
               playerRef.current.y + step,
               branch.startY,
-              branch.endY
+              branch.endY,
             );
             if (nextY !== playerRef.current.y) {
               playerRef.current.y = nextY;
@@ -343,7 +343,8 @@ export default function EraScene({
             }
           }
 
-          const atEnd = Math.abs(playerRef.current.y - branch.endY) <= ENDPOINT_RADIUS;
+          const atEnd =
+            Math.abs(playerRef.current.y - branch.endY) <= ENDPOINT_RADIUS;
           const distanceToEnd = Math.abs(playerRef.current.y - branch.endY);
           const holdingNodeRadius = nearNodeBranchIdRef.current === branch.id;
           const nodeRadius = holdingNodeRadius
@@ -352,7 +353,8 @@ export default function EraScene({
 
           const nearNode =
             Boolean(branch.event) &&
-            (distanceToEnd <= nodeRadius || activeBranchIdRef.current === branch.id);
+            (distanceToEnd <= nodeRadius ||
+              activeBranchIdRef.current === branch.id);
           if (nearNode) {
             nearNodeBranchIdRef.current = branch.id;
             updateNodeFocus({ event: branch.event, atNode: atEnd });
@@ -363,7 +365,12 @@ export default function EraScene({
             updateNodeFocus(null);
           }
 
-          if (atEnd && branch.event && keys.current.space && !interactionLatchRef.current) {
+          if (
+            atEnd &&
+            branch.event &&
+            keys.current.space &&
+            !interactionLatchRef.current
+          ) {
             interactionLatchRef.current = true;
             const eraMeta = selectedEra;
             onOpenEvent?.({ era: eraMeta, event: branch.event });
@@ -451,7 +458,10 @@ export default function EraScene({
           const isCurrentEra = branch.eraId === eraId;
           const isNear = branch.id === nearBranchId;
           const isActive = branch.id === activeBranchId;
-          const activeEraColor = colorNumberToCss(selectedEra?.pathColor, "#f59e0b");
+          const activeEraColor = colorNumberToCss(
+            selectedEra?.pathColor,
+            "#f59e0b",
+          );
 
           return (
             <g key={branch.id}>

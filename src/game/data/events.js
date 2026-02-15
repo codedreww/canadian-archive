@@ -318,6 +318,17 @@ export const EVENTS_BY_ERA = {
           alt: "Royal Proclamation of 1763",
         },
       ],
+      sources: [
+        {
+          label: "Constitutional Act, 1791",
+          href: "https://www.thecanadianencyclopedia.ca/en/article/constitutional-act-1791",
+          note: 'Tousignant, Pierre. "Constitutional Act, 1791". The Canadian Encyclopedia, 23 April 2020, Historica Canada. Accessed 15 February 2026.',
+        },
+        {
+          label: "Royal Proclamation, King George III of England",
+          note: "Issued October 7, 1763. Broadside. Library and Archives Canada / e010778430.",
+        },
+      ],
     },
     {
       id: "era3-2",
