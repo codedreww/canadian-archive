@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Geist_Mono } from "next/font/google";
 import { ERAS } from "@/game/data/eras";
+import HomeEraSelector from "@/ui/HomeEraSelector";
 
 const pixel = Geist_Mono({
   weight: "400",
@@ -71,40 +71,6 @@ function MapleLeaf({ className = "h-7 w-7" }) {
   );
 }
 
-function EraCard({ era }) {
-  const home = HOME_DATA[era.id] ?? {
-    title: era.title,
-    dates: era.years,
-    image: "/home/cards/era1.png",
-  };
-  const accent = ERA_ACCENTS[era.id] ?? "#364152";
-
-  return (
-    <Link
-      href={`/era/${era.id}`}
-      className="group retro-panel retro-copy block overflow-hidden transition duration-150"
-      style={{ borderColor: accent }}
-    >
-      <p className="px-4 py-2 text-left text-base font-bold leading-relaxed text-[#1c1f26]">{home.dates}</p>
-      <div className="retro-frame border-0 border-b-4 p-0" style={{ borderBottomColor: accent }}>
-        <img
-          src={home.image}
-          alt={home.title}
-          className="retro-pixel-image h-[15.5rem] w-full object-cover"
-        />
-      </div>
-      <div className="relative overflow-hidden px-4 py-4">
-        <div className="retro-scanlines pointer-events-none absolute inset-0 opacity-20" />
-        <div className="relative">
-          
-          <h2 className="text-lg font-bold leading-relaxed text-[#1c1f26]">{home.title}</h2>
-          {/* <p className="retro-meta mt-2 text-xs font-semibold">Enter Era</p> */}
-        </div>
-      </div>
-    </Link>
-  );
-}
-
 export default function HomePage() {
   return (
     <div className={`${pixel.className} relative min-h-screen bg-[#ececec] text-[#171717]`}>
@@ -131,11 +97,11 @@ export default function HomePage() {
         </header>
 
         <main className="flex-1">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {ERAS.map((era) => (
-              <EraCard key={era.id} era={era} />
-            ))}
-          </div>
+          <HomeEraSelector
+            eras={ERAS}
+            homeData={HOME_DATA}
+            eraAccents={ERA_ACCENTS}
+          />
         </main>
 
         <footer className="mt-7 border-[4px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-3 text-[12px] text-[#364152] md:text-sm">

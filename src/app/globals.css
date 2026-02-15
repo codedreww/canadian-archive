@@ -237,3 +237,21 @@ button:hover {
   border-color: var(--canadian-red) !important;
   box-shadow: 0 0 12px rgba(220, 59, 50, 0.6) !important;
 }
+
+.home-era-selected {
+  border-color: var(--canadian-red) !important;
+  box-shadow: 0 0 12px rgba(220, 59, 50, 0.6) !important;
+}
+
+.home-era-card:hover {
+  border-color: var(--canadian-red) !important;
+  box-shadow: 0 0 12px rgba(220, 59, 50, 0.6) !important;
+}
+
+.home-keyboard-mode .home-era-card:hover:not(.home-era-selected) {
+  border-color: var(--home-era-accent) !important;
+  box-shadow:
+    4px 0 0 var(--retro-ink),
+    0 4px 0 var(--retro-ink),
+    8px 8px 0 var(--retro-ink) !important;
+}
