@@ -140,6 +140,7 @@ export default function EraScene({
     [selectedEra?.id],
   );
   const usingSpritePlayer = Boolean(playerFrames?.length);
+  const activeEraColor = colorNumberToCss(selectedEra?.pathColor, "#f59e0b");
 
   const setPlayerFrame = useCallback((nextIndex) => {
     if (nextIndex === playerFrameIndexRef.current) return;
@@ -455,24 +456,67 @@ export default function EraScene({
         viewBox={`0 0 ${width} ${height}`}
         preserveAspectRatio="none"
       >
+        <defs>
+          <linearGradient
+            id="baseline-core-gradient"
+            x1={`${minX}`}
+            y1={`${baselineY}`}
+            x2={`${maxX}`}
+            y2={`${baselineY}`}
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#a5f3fc" stopOpacity="0.85" />
+            <stop offset="50%" stopColor="#67e8f9" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#93c5fd" stopOpacity="0.85" />
+          </linearGradient>
+        </defs>
+
         <line
           x1={minX}
           y1={baselineY}
           x2={maxX}
           y2={baselineY}
-          stroke="#7dd3fc"
+          stroke="#0b1220"
+          strokeWidth="12"
+          strokeOpacity="0.55"
+          strokeLinecap="round"
+        />
+        <line
+          x1={minX}
+          y1={baselineY}
+          x2={maxX}
+          y2={baselineY}
+          stroke="url(#baseline-core-gradient)"
           strokeWidth="5"
-          strokeOpacity="0.88"
+          strokeOpacity="0.95"
+          strokeLinecap="round"
+        />
+        <line
+          x1={minX}
+          y1={baselineY}
+          x2={maxX}
+          y2={baselineY}
+          stroke="#f8fafc"
+          strokeWidth="1.5"
+          strokeOpacity="0.38"
+          strokeDasharray="10 14"
+          strokeLinecap="round"
         />
 
         {branches.map((branch) => {
           const isCurrentEra = branch.eraId === eraId;
           const isNear = branch.id === nearBranchId;
           const isActive = branch.id === activeBranchId;
-          const activeEraColor = colorNumberToCss(
-            selectedEra?.pathColor,
-            "#f59e0b",
-          );
+          const branchColor = isCurrentEra ? activeEraColor : "#94a3b8";
+          const isHighlighted = isNear || isActive;
+          const branchCoreWidth = isActive ? 5 : isNear ? 4.5 : 4;
+          const branchShadowWidth = isActive ? 10 : 8;
+          const endpointOuterRadius = isActive ? 11 : isNear ? 10 : 9;
+          const endpointInnerRadius = isActive ? 7.5 : isNear ? 7 : 6.5;
+          const hasEvent = Boolean(branch.event);
+          const endpointFill = hasEvent ? "#fbbf24" : "#94a3b8";
+          const endpointStroke = hasEvent ? "#f59e0b" : "#64748b";
+          const endpointOpacity = hasEvent ? 0.98 : 0.52;
 
           return (
             <g key={branch.id}>
@@ -481,17 +525,71 @@ export default function EraScene({
                 y1={branch.startY}
                 x2={branch.x}
                 y2={branch.endY}
-                stroke={isCurrentEra ? activeEraColor : "#94a3b8"}
-                strokeWidth={isActive ? 8 : 5}
-                strokeOpacity={isNear || isActive ? 1 : 0.85}
+                stroke="#0b1220"
+                strokeWidth={branchShadowWidth}
+                strokeOpacity={isActive ? 0.62 : 0.5}
+                strokeLinecap="round"
+              />
+              <line
+                x1={branch.x}
+                y1={branch.startY}
+                x2={branch.x}
+                y2={branch.endY}
+                stroke={branchColor}
+                strokeWidth={branchCoreWidth}
+                strokeOpacity={isHighlighted ? 1 : 0.84}
+                strokeLinecap="round"
+              />
+              <circle
+                cx={branch.x}
+                cy={branch.startY}
+                r={5}
+                fill="#0b1220"
+                fillOpacity="0.64"
+              />
+              <circle
+                cx={branch.x}
+                cy={branch.startY}
+                r={isHighlighted ? 3.4 : 3}
+                fill={branchColor}
+                fillOpacity={isHighlighted ? 0.96 : 0.8}
               />
               <circle
                 cx={branch.x}
                 cy={branch.endY}
-                r="6"
-                fill="#fbbf24"
-                fillOpacity={branch.event ? 0.95 : 0.45}
+                r={endpointOuterRadius}
+                fill="#0b1220"
+                fillOpacity={isHighlighted ? 0.62 : 0.52}
               />
+              <circle
+                cx={branch.x}
+                cy={branch.endY}
+                r={endpointInnerRadius}
+                fill={endpointFill}
+                fillOpacity={endpointOpacity}
+                stroke={endpointStroke}
+                strokeWidth="2"
+              />
+              {hasEvent && (
+                <circle
+                  cx={branch.x}
+                  cy={branch.endY}
+                  r={isActive ? 2.7 : 2.2}
+                  fill="#fff7ed"
+                  fillOpacity={0.85}
+                />
+              )}
+              {isHighlighted && (
+                <circle
+                  cx={branch.x}
+                  cy={branch.endY}
+                  r={endpointOuterRadius + 3}
+                  fill="none"
+                  stroke={branchColor}
+                  strokeOpacity="0.45"
+                  strokeWidth="1.5"
+                />
+              )}
             </g>
           );
         })}
