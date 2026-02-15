@@ -5,8 +5,8 @@ import useKeyboard from "../systems/useKeyboard";
 
 const MAX_EVENTS_PER_ERA = 10;
 const MIN_EVENTS_PER_ERA = 1;
-const HORIZONTAL_SPEED = 1.9;
-const VERTICAL_SPEED = 1.5;
+const HORIZONTAL_SPEED = 2.5;
+const VERTICAL_SPEED = 2.1;
 const BRANCH_ENTER_RADIUS = 18;
 const BRANCH_EXIT_RADIUS = 28;
 const ENDPOINT_RADIUS = 7;
