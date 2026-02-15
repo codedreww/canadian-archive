@@ -27,15 +27,12 @@ export default function HUD({ era, prompt }) {
         <div className="text-xs text-white/60">Canadian Archive</div>
         <div className="text-sm font-semibold">{era?.title}</div>
         <div className="mt-1 text-xs text-white/70">
-          WASD / Arrow Keys to move
+          A/D on baseline, W/S on vertical branch
         </div>
       </div>
 
       {prompt && (
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-xl border border-white/10 bg-black/60 px-5 py-3 text-white backdrop-blur">
-          <div className="text-xs text-white/70">
-            Press <span className="font-semibold text-white">E</span> to open
-          </div>
           <div className="text-sm font-semibold">{prompt}</div>
         </div>
       )}

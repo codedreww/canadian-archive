@@ -25,7 +25,7 @@ export default function OpenEventModal({ era, event, onClose }) {
   if (!event) return null;
 
   return (
-    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/70 p-6">
+    <div className="absolute inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/70 p-6">
       <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-[#0b0f17] p-6 text-white shadow-2xl">
         <div className="text-xs text-white/60">
           {era?.title} • {era?.years}
