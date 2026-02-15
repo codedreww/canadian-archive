@@ -40,11 +40,14 @@ const HOME_DATA = {
   },
 };
 
-function MapleLeaf({ className = "h-7 w-7 text-[#dc3b32]" }) {
+function MapleLeaf({ className = "h-7 w-7" }) {
   return (
-    <svg viewBox="0 0 512 512" className={className} fill="currentColor" aria-hidden="true">
-      <path d="M256 8l-36 118-103-52 24 118-117 29 86 88-67 95 116-20 6 120h91l6-120 116 20-67-95 86-88-117-29 24-118-103 52z" />
-    </svg>
+    <img
+      src="/home/maple-leaf.png"
+      alt="Maple leaf"
+      className={`${className} [image-rendering:pixelated]`}
+      draggable={false}
+    />
   );
 }
 
@@ -58,7 +61,7 @@ function EraCard({ era }) {
   return (
     <Link
       href={`/era/${era.id}`}
-      className="group block overflow-hidden border-[4px] border-[#dc3b32] transition duration-150 hover:bg-[#f5cc4b] hover:border-[#f5cc4b]"
+      className="group block overflow-hidden border-[4px] border-[#dc3b32] transition duration-150"
     >
       <div className="h-[15.5rem] bg-[#b9c9d4]">
         <img src={home.image} alt={home.title} className="h-full w-full object-cover [image-rendering:pixelated]" />
@@ -73,27 +76,27 @@ function EraCard({ era }) {
 
 export default function HomePage() {
   return (
-    <div className={`${pixel.className} relative min-h-screen overflow-hidden bg-[#ececec] text-[#171717]`}>
+    <div className={`${pixel.className} relative min-h-screen bg-[#ececec] text-[#171717]`}>
       <div
-        className="home-bg-scroll pointer-events-none absolute inset-0 opacity-60"
+        className="home-bg-scroll pointer-events-none fixed inset-0"
         style={{
           backgroundImage: "url('/home/homepage_bg.png')",
-          backgroundRepeat: "repeat-x",
-          backgroundSize: "1600px auto",
-          backgroundPosition: "center bottom",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(236,236,236,0.7)_0%,rgba(236,236,236,0.4)_40%,rgba(236,236,236,0.85)_100%)]" />
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(180deg,rgba(236,236,236,0.55)_0%,rgba(236,236,236,0.25)_45%,rgba(236,236,236,0.7)_100%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-6 pt-8 md:px-8">
         <header className="py-7 text-center">
-          <h1 className="mx-auto inline-flex items-center gap-3 border-[4px] border-[#dc3b32] bg-[#ececec] px-4 py-3 text-xl text-[#171717] hover:bg-[#f5cc4b] transition duration-150 md:text-3xl">
+          <h1 className="mx-auto inline-flex items-center gap-3 border-[4px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-3 text-2xl font-semibold tracking-wide text-[#171717] md:text-4xl">
             <MapleLeaf />
             Canadian Archive
             <MapleLeaf />
           </h1>
-          <p className="mx-auto mt-5 max-w-4xl text-[12px] leading-loose text-[#364152] md:text-sm">
-            Step through Canada's defining eras and uncover the stories that shaped a nation.
+          <p className="mx-auto mt-5 inline-block max-w-4xl border-[2px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-2 text-sm font-semibold leading-relaxed text-[#1c1f26] md:text-base">
+            Step through Canada's defining eras and uncover the stories that shaped a nation
           </p>
         </header>
 
@@ -105,10 +108,10 @@ export default function HomePage() {
           </div>
         </main>
 
-        <footer className="mt-7 border-[4px] border-[#dc3b32] bg-[#ececec] px-4 py-3 text-[12px] text-[#364152] hover:bg-[#f5cc4b] transition duration-150 md:text-sm">
+        <footer className="mt-7 border-[4px] border-[#dc3b32] bg-[#ececec]/90 px-4 py-3 text-[12px] text-[#364152] md:text-sm">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <span>(c) 2026 Canadian Archive</span>
-            <Link href="/team" className="text-[#dc3b32] hover:text-[#f5cc4b] transition">
+            <Link href="/team" className="text-[#dc3b32]">
               Developers: Andrew, Sagesse, Namy, Chris, Cellou
             </Link>
           </div>
