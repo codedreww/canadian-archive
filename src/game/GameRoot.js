@@ -75,8 +75,10 @@ export default function GameRoot({ era }) {
       className="relative h-full w-full overflow-hidden"
       style={{
         backgroundImage: `url(${era?.background})`,
-        backgroundSize: 'cover',
+        backgroundSize: '100% auto',
         backgroundPosition: 'center',
+        backgroundColor: '#0a0f18',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       {hasMeasuredSize && (
