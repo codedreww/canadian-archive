@@ -79,6 +79,7 @@ export default function GameRoot({ era }) {
         backgroundPosition: 'center',
         backgroundColor: '#0a0f18',
         backgroundRepeat: 'no-repeat',
+        
       }}
     >
       {hasMeasuredSize && (
