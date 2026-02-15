@@ -7,7 +7,7 @@
   RESPONSIBILITIES:
   - Track WASD keys.
   - Track arrow keys.
-  - Track interaction key (E).
+  - Track interaction key (Space).
   - Provide a stable reference object that scenes can read every frame.
 
   IMPORTANT:
@@ -30,18 +30,20 @@ export default function useKeyboard() {
     arrowleft: false,
     arrowdown: false,
     arrowright: false,
-    e: false,
+    space: false,
   });
 
   useEffect(() => {
     const down = (ev) => {
       const k = ev.key.toLowerCase();
-      if (k in keys.current) keys.current[k] = true;
+      const normalized = k === " " ? "space" : k;
+      if (normalized in keys.current) keys.current[normalized] = true;
     };
 
     const up = (ev) => {
       const k = ev.key.toLowerCase();
-      if (k in keys.current) keys.current[k] = false;
+      const normalized = k === " " ? "space" : k;
+      if (normalized in keys.current) keys.current[normalized] = false;
     };
 
     window.addEventListener("keydown", down);

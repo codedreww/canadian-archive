@@ -87,17 +87,15 @@ export default function EraScene({
   const activeBranchIdRef = useRef(null);
   const [activeBranchId, setActiveBranchId] = useState(null);
   const [nearBranchId, setNearBranchId] = useState(null);
-  const [prompt, setPrompt] = useState(null);
   const nearBranchIdRef = useRef(null);
   const promptRef = useRef(null);
-  const eLatchRef = useRef(false);
+  const interactionLatchRef = useRef(false);
   const prevPausedRef = useRef(paused);
 
   const updatePrompt = useCallback(
     (value) => {
       if (promptRef.current === value) return;
       promptRef.current = value;
-      setPrompt(value);
       onPromptChange?.(value);
     },
     [onPromptChange]
@@ -126,7 +124,7 @@ export default function EraScene({
           setNearBranchId(null);
           updatePrompt(null);
         }
-        eLatchRef.current = false;
+        interactionLatchRef.current = false;
       }
       prevPausedRef.current = paused;
 
@@ -263,7 +261,7 @@ export default function EraScene({
           let nextPrompt = null;
           if (atEnd) {
             nextPrompt = branch.event
-              ? `Press E • ${branch.event.title}`
+              ? `Press Space • ${branch.event.title}`
               : "No event assigned for this branch";
           } else {
             nextPrompt = "W/S to move on branch";
@@ -271,21 +269,21 @@ export default function EraScene({
 
           updatePrompt(nextPrompt);
 
-          if (atEnd && branch.event && keys.current.e && !eLatchRef.current) {
-            eLatchRef.current = true;
+          if (atEnd && branch.event && keys.current.space && !interactionLatchRef.current) {
+            interactionLatchRef.current = true;
             const eraMeta = selectedEra;
             onOpenEvent?.({ era: eraMeta, event: branch.event });
           }
         }
 
-        if (!keys.current.e) {
-          eLatchRef.current = false;
+        if (!keys.current.space) {
+          interactionLatchRef.current = false;
         }
       }
 
       // Keep latch healthy even while paused (modal open).
-      if (!keys.current.e) {
-        eLatchRef.current = false;
+      if (!keys.current.space) {
+        interactionLatchRef.current = false;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -303,7 +301,6 @@ export default function EraScene({
     maxX,
     minX,
     onOpenEvent,
-    onPromptChange,
     paused,
     height,
     selectedEra,
