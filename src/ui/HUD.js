@@ -23,7 +23,8 @@ export default function HUD({ era }) {
             Controls
           </div>
           <div className="retro-copy mt-1 text-[11px] leading-relaxed sm:text-xs">
-            A/D: move on timeline | W/S: move on branch | Space: open event
+            A/D: move on timeline | W/S: move on branch | Space: open event |
+            Esc: exit era
           </div>
         </div>
       </div>

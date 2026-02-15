@@ -9,6 +9,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import EraScene from "./scenes/EraScene";
 import HUD from "@/ui/HUD";
 import NodeInfoCard from "@/ui/NodeInfoCard";
@@ -17,6 +18,7 @@ import { ERAS } from "@/game/data/eras";
 import { EVENTS_BY_ERA } from "@/game/data/events";
 
 export default function GameRoot({ era }) {
+  const router = useRouter();
   const wrapperRef = useRef(null);
 
   // Responsive size state (null until client measures wrapper).
@@ -80,6 +82,19 @@ export default function GameRoot({ era }) {
     size.width > 0 &&
     size.height > 0;
 
+  useEffect(() => {
+    const onKeyDown = (keyboardEvent) => {
+      if (keyboardEvent.key !== "Escape") return;
+      // Keep Escape dedicated to closing event modal while one is open.
+      if (activeSelection) return;
+      keyboardEvent.preventDefault();
+      router.push("/");
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [activeSelection, router]);
+
   return (
     <div
       ref={wrapperRef}
@@ -105,6 +120,15 @@ export default function GameRoot({ era }) {
 
       <HUD era={era} />
       <NodeInfoCard focus={displayedNodeFocus} />
+      <div className="pointer-events-none absolute right-4 top-4 z-40">
+        <button
+          type="button"
+          className="retro-close-btn pointer-events-auto px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em]"
+          onClick={() => router.push("/")}
+        >
+          Exit [Esc]
+        </button>
+      </div>
 
       <OpenEventModal
         era={activeSelection?.era ?? era}
