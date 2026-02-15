@@ -64,7 +64,10 @@ export default function GameRoot({ era }) {
     if (nodeFocus) {
       // Delay first reveal to avoid card flicker while crossing trigger edges.
       const delay = !visibleNodeFocus || nextId !== currentId ? 140 : 0;
-      timeoutId = window.setTimeout(() => setVisibleNodeFocus(nodeFocus), delay);
+      timeoutId = window.setTimeout(
+        () => setVisibleNodeFocus(nodeFocus),
+        delay,
+      );
     } else if (visibleNodeFocus) {
       // Keep card briefly when leaving node radius to avoid rapid hide/show jitter.
       timeoutId = window.setTimeout(() => setVisibleNodeFocus(null), 220);

@@ -20,6 +20,25 @@
 
 import { useEffect, useRef } from "react";
 
+function isTypingTarget(event) {
+  const target = event?.target;
+  if (!target || !(target instanceof Element)) return false;
+
+  if (target.closest('[data-disable-game-keys="true"]')) return true;
+
+  const tagName = target.tagName?.toLowerCase();
+  if (tagName === "textarea" || tagName === "select") return true;
+  if (tagName === "input") {
+    const input = target;
+    const type = (input.getAttribute("type") || "text").toLowerCase();
+    return !["checkbox", "radio", "button", "submit", "reset", "range"].includes(
+      type,
+    );
+  }
+
+  return target.isContentEditable;
+}
+
 export default function useKeyboard() {
   const keys = useRef({
     w: false,
@@ -34,24 +53,47 @@ export default function useKeyboard() {
   });
 
   useEffect(() => {
+    const resetTrackedKeys = () => {
+      for (const key of Object.keys(keys.current)) {
+        keys.current[key] = false;
+      }
+    };
+
     const down = (ev) => {
+      if (isTypingTarget(ev)) {
+        resetTrackedKeys();
+        return;
+      }
+
       const k = ev.key.toLowerCase();
       const normalized = k === " " ? "space" : k;
       if (normalized in keys.current) keys.current[normalized] = true;
     };
 
     const up = (ev) => {
+      if (isTypingTarget(ev)) return;
+
       const k = ev.key.toLowerCase();
       const normalized = k === " " ? "space" : k;
       if (normalized in keys.current) keys.current[normalized] = false;
     };
 
+    const onFocusIn = (ev) => {
+      if (isTypingTarget(ev)) resetTrackedKeys();
+    };
+
+    const onWindowBlur = () => resetTrackedKeys();
+
     window.addEventListener("keydown", down);
     window.addEventListener("keyup", up);
+    document.addEventListener("focusin", onFocusIn);
+    window.addEventListener("blur", onWindowBlur);
 
     return () => {
       window.removeEventListener("keydown", down);
       window.removeEventListener("keyup", up);
+      document.removeEventListener("focusin", onFocusIn);
+      window.removeEventListener("blur", onWindowBlur);
     };
   }, []);
 

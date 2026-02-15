@@ -107,6 +107,7 @@ export default function EraChatbot({ era }) {
                 <form onSubmit={handleSubmit} className="space-y-2">
                   <textarea
                     rows={3}
+                    data-disable-game-keys="true"
                     className="w-full resize-none border-2 border-[#1c1f26] bg-white px-2 py-1 text-xs leading-relaxed outline-none focus:border-[#dc3b32]"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
