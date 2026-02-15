@@ -5,13 +5,24 @@ import useKeyboard from "../systems/useKeyboard";
 
 const MAX_EVENTS_PER_ERA = 10;
 const MIN_EVENTS_PER_ERA = 1;
-const HORIZONTAL_SPEED = 2.6;
-const VERTICAL_SPEED = 2.1;
+const HORIZONTAL_SPEED = 1.9;
+const VERTICAL_SPEED = 1.5;
 const BRANCH_ENTER_RADIUS = 18;
 const BRANCH_EXIT_RADIUS = 28;
 const ENDPOINT_RADIUS = 7;
 const NODE_INFO_ENTER_DISTANCE = 44;
 const NODE_INFO_EXIT_DISTANCE = 62;
+const PLAYER_MOVE_EPSILON = 0.05;
+const PLAYER_FRAME_INTERVAL_MS = 240;
+const PLAYER_SPRITE_WIDTH = 56;
+const PLAYER_SPRITE_HEIGHT = 96;
+const PLAYER_BOB_PX = 2;
+const PLAYER_SPRITES_BY_ERA = {
+  era3: [
+    "/sprites/era3/soldier_idle.svg",
+    "/sprites/era3/soldier_walk.svg",
+  ],
+};
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -97,6 +108,9 @@ export default function EraScene({
 
   const playerRef = useRef({ x: initialX, y: baselineY });
   const [playerPos, setPlayerPos] = useState(() => ({ x: initialX, y: baselineY }));
+  const [playerFrameIndex, setPlayerFrameIndex] = useState(0);
+  const [playerFacing, setPlayerFacing] = useState(1);
+  const [isPlayerMoving, setIsPlayerMoving] = useState(false);
 
   const activeBranchIdRef = useRef(null);
   const [activeBranchId, setActiveBranchId] = useState(null);
@@ -106,6 +120,47 @@ export default function EraScene({
   const nodeFocusRef = useRef(null);
   const interactionLatchRef = useRef(false);
   const prevPausedRef = useRef(paused);
+  const isPlayerMovingRef = useRef(false);
+  const playerFacingRef = useRef(1);
+  const playerFrameIndexRef = useRef(0);
+
+  const playerFrames = useMemo(
+    () => PLAYER_SPRITES_BY_ERA[selectedEra?.id] ?? null,
+    [selectedEra?.id]
+  );
+  const usingSpritePlayer = Boolean(playerFrames?.length);
+
+  const setPlayerFrame = useCallback((nextIndex) => {
+    if (nextIndex === playerFrameIndexRef.current) return;
+    playerFrameIndexRef.current = nextIndex;
+    setPlayerFrameIndex(nextIndex);
+  }, []);
+
+  useEffect(() => {
+    // Reset character animation state when switching eras.
+    isPlayerMovingRef.current = false;
+    setIsPlayerMoving(false);
+    playerFacingRef.current = 1;
+    setPlayerFacing(1);
+    setPlayerFrame(0);
+  }, [selectedEra?.id, setPlayerFrame]);
+
+  useEffect(() => {
+    if (!usingSpritePlayer || !isPlayerMoving || !playerFrames?.length) {
+      setPlayerFrame(0);
+      return undefined;
+    }
+
+    // Instant switch to walk frame when movement starts.
+    setPlayerFrame(1 % playerFrames.length);
+
+    const intervalId = window.setInterval(() => {
+      const nextFrame = (playerFrameIndexRef.current + 1) % playerFrames.length;
+      setPlayerFrame(nextFrame);
+    }, PLAYER_FRAME_INTERVAL_MS);
+
+    return () => window.clearInterval(intervalId);
+  }, [isPlayerMoving, playerFrames, setPlayerFrame, usingSpritePlayer]);
 
   const updateNodeFocus = useCallback(
     (value) => {
@@ -120,6 +175,9 @@ export default function EraScene({
     let rafId = null;
 
     const tick = () => {
+      const prevX = playerRef.current.x;
+      const prevY = playerRef.current.y;
+
       const resumedFromModal = prevPausedRef.current && !paused;
       if (resumedFromModal) {
         const activeBranch = branchesById.get(activeBranchIdRef.current);
@@ -317,6 +375,29 @@ export default function EraScene({
         }
       }
 
+      const deltaX = playerRef.current.x - prevX;
+      const deltaY = playerRef.current.y - prevY;
+      const moved =
+        Math.abs(deltaX) > PLAYER_MOVE_EPSILON ||
+        Math.abs(deltaY) > PLAYER_MOVE_EPSILON;
+
+      if (moved !== isPlayerMovingRef.current) {
+        isPlayerMovingRef.current = moved;
+        setIsPlayerMoving(moved);
+      }
+
+      if (Math.abs(deltaX) > PLAYER_MOVE_EPSILON) {
+        const nextFacing = deltaX > 0 ? 1 : -1;
+        if (nextFacing !== playerFacingRef.current) {
+          playerFacingRef.current = nextFacing;
+          setPlayerFacing(nextFacing);
+        }
+      }
+
+      if (usingSpritePlayer && !moved) {
+        setPlayerFrame(0);
+      }
+
       // Keep latch healthy even while paused (modal open).
       if (!keys.current.space) {
         interactionLatchRef.current = false;
@@ -340,8 +421,11 @@ export default function EraScene({
     minX,
     onOpenEvent,
     paused,
+    playerFrames,
     selectedEra,
+    setPlayerFrame,
     updateNodeFocus,
+    usingSpritePlayer,
   ]);
 
   return (
@@ -392,14 +476,38 @@ export default function EraScene({
         })}
       </svg>
 
-      <div
-        className="absolute h-6 w-6 rounded-full border-2 border-white bg-white shadow-[0_0_0_6px_rgba(56,189,248,0.28)]"
-        style={{
-          left: `${playerPos.x}px`,
-          top: `${playerPos.y}px`,
-          transform: "translate(-50%, -50%)",
-        }}
-      />
+      {usingSpritePlayer ? (
+        <div
+          aria-hidden="true"
+          className="absolute [image-rendering:pixelated]"
+          style={{
+            width: `${PLAYER_SPRITE_WIDTH}px`,
+            height: `${PLAYER_SPRITE_HEIGHT}px`,
+            left: `${playerPos.x}px`,
+            top: `${playerPos.y}px`,
+            transform: `translate(-50%, -100%) translateY(${
+              isPlayerMoving && playerFrameIndex % 2 === 1 ? PLAYER_BOB_PX : 0
+            }px) scaleX(${playerFacing})`,
+            filter: "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.45))",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={playerFrames[playerFrameIndex] ?? playerFrames[0]}
+            alt=""
+            className="h-full w-full object-contain [image-rendering:pixelated]"
+          />
+        </div>
+      ) : (
+        <div
+          className="absolute h-6 w-6 rounded-full border-2 border-white bg-white shadow-[0_0_0_6px_rgba(56,189,248,0.28)]"
+          style={{
+            left: `${playerPos.x}px`,
+            top: `${playerPos.y}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      )}
     </div>
   );
 }

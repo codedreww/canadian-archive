@@ -19,11 +19,8 @@ import { EVENTS_BY_ERA } from "@/game/data/events";
 export default function GameRoot({ era }) {
   const wrapperRef = useRef(null);
 
-  // Responsive size state
-  const [size, setSize] = useState(() => ({
-    width: typeof window === "undefined" ? 1280 : Math.max(1, window.innerWidth),
-    height: typeof window === "undefined" ? 720 : Math.max(1, window.innerHeight),
-  }));
+  // Responsive size state (null until client measures wrapper).
+  const [size, setSize] = useState({ width: null, height: null });
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -77,6 +74,11 @@ export default function GameRoot({ era }) {
   }, [nodeFocus, visibleNodeFocus]);
 
   const displayedNodeFocus = paused ? null : visibleNodeFocus;
+  const hasMeasuredSize =
+    Number.isFinite(size.width) &&
+    Number.isFinite(size.height) &&
+    size.width > 0 &&
+    size.height > 0;
 
   return (
     <div
@@ -88,7 +90,7 @@ export default function GameRoot({ era }) {
         backgroundPosition: "center",
       }}
     >
-      {size.width > 0 && size.height > 0 && (
+      {hasMeasuredSize && (
         <EraScene
           width={size.width}
           height={size.height}

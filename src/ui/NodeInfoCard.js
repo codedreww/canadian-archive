@@ -49,8 +49,12 @@ export default function NodeInfoCard({ focus }) {
           )}
 
           {focus.atNode && (
-            <div className="retro-copy mt-2 text-xs font-bold uppercase tracking-[0.1em] sm:text-sm">
-              Press Space to open event
+            <div className="retro-copy mt-2 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] sm:text-sm">
+              <span>Press</span>
+              <span className="retro-close-btn inline-block px-2 py-0.5 text-[11px] leading-none sm:text-xs">
+                Space
+              </span>
+              <span>to open event</span>
             </div>
           )}
         </div>
