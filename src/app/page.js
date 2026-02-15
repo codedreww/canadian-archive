@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Press_Start_2P } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import { ERAS } from "@/game/data/eras";
 
-const pixel = Press_Start_2P({
+const pixel = Geist_Mono({
   weight: "400",
   subsets: ["latin"],
 });
@@ -58,14 +58,14 @@ function EraCard({ era }) {
   return (
     <Link
       href={`/era/${era.id}`}
-      className="group block overflow-hidden border-[6px] border-[#6e3d2e] bg-[#f4ead8] shadow-[0_0_0_4px_#aa4434] transition duration-150 hover:scale-[1.02] hover:shadow-[0_0_0_4px_#e25c48,0_0_18px_2px_rgba(226,92,72,0.55)]"
+      className="group block overflow-hidden border-[4px] border-[#dc3b32] transition duration-150 hover:bg-[#f5cc4b] hover:border-[#f5cc4b]"
     >
-      <div className="h-[15.5rem] border-b-[6px] border-[#6e3d2e] bg-[#b9c9d4]">
+      <div className="h-[15.5rem] bg-[#b9c9d4]">
         <img src={home.image} alt={home.title} className="h-full w-full object-cover [image-rendering:pixelated]" />
       </div>
-      <div className="bg-[#f6eee1] px-4 py-4">
-        <h2 className={`${pixel.className} text-sm leading-relaxed text-[#16213b]`}>{home.title}</h2>
-        <p className={`${pixel.className} mt-2 text-xs text-[#3b4d66]`}>{home.dates}</p>
+      <div className="bg-[#ececec] px-4 py-4">
+        <h2 className={`${pixel.className} text-sm leading-relaxed text-[#1c1f26]`}>{home.title}</h2>
+        <p className={`${pixel.className} mt-2 text-xs text-[#364152]`}>{home.dates}</p>
       </div>
     </Link>
   );
@@ -73,26 +73,26 @@ function EraCard({ era }) {
 
 export default function HomePage() {
   return (
-    <div className={`${pixel.className} relative min-h-screen overflow-hidden bg-[#f7e7cf] text-[#12203d]`}>
+    <div className={`${pixel.className} relative min-h-screen overflow-hidden bg-[#ececec] text-[#171717]`}>
       <div
-        className="home-bg-scroll pointer-events-none absolute inset-0 opacity-70"
+        className="home-bg-scroll pointer-events-none absolute inset-0 opacity-60"
         style={{
-          backgroundImage: "url('/home/bg-landscape.png')",
+          backgroundImage: "url('/home/homepage_bg.png')",
           backgroundRepeat: "repeat-x",
           backgroundSize: "1600px auto",
           backgroundPosition: "center bottom",
         }}
       />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(247,231,207,0.65)_0%,rgba(247,231,207,0.3)_40%,rgba(247,231,207,0.8)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(236,236,236,0.7)_0%,rgba(236,236,236,0.4)_40%,rgba(236,236,236,0.85)_100%)]" />
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-6 pt-8 md:px-8">
         <header className="py-7 text-center">
-          <h1 className="mx-auto inline-flex items-center gap-3 border-[6px] border-[#6e3d2e] bg-[#f7efe2] px-4 py-3 text-xl text-[#101c3a] shadow-[0_0_0_4px_#aa4434] md:text-3xl">
+          <h1 className="mx-auto inline-flex items-center gap-3 border-[4px] border-[#dc3b32] bg-[#ececec] px-4 py-3 text-xl text-[#171717] hover:bg-[#f5cc4b] transition duration-150 md:text-3xl">
             <MapleLeaf />
             Canadian Archive
             <MapleLeaf />
           </h1>
-          <p className="mx-auto mt-5 max-w-4xl text-[10px] leading-loose text-[#33445d] md:text-xs">
+          <p className="mx-auto mt-5 max-w-4xl text-[12px] leading-loose text-[#364152] md:text-sm">
             Step through Canada's defining eras and uncover the stories that shaped a nation.
           </p>
         </header>
@@ -105,10 +105,10 @@ export default function HomePage() {
           </div>
         </main>
 
-        <footer className="mt-7 border-[6px] border-[#6e3d2e] bg-[#f7efe2] px-4 py-3 text-[10px] text-[#33445d] shadow-[0_0_0_4px_#aa4434] md:text-xs">
+        <footer className="mt-7 border-[4px] border-[#dc3b32] bg-[#ececec] px-4 py-3 text-[12px] text-[#364152] hover:bg-[#f5cc4b] transition duration-150 md:text-sm">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <span>(c) 2026 Canadian Archive</span>
-            <Link href="/team" className="text-[#bf3a32] hover:underline">
+            <Link href="/team" className="text-[#dc3b32] hover:text-[#f5cc4b] transition">
               Developers: Andrew, Sagesse, Namy, Chris, Cellou
             </Link>
           </div>

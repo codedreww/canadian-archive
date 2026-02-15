@@ -2,7 +2,7 @@
 
 :root {
   /* Base app tokens. */
-  --background: #ffffff;
+  --background: #ececec;
   --foreground: #171717;
 
   /* Retro theme tokens used by modal and reusable UI blocks. */
@@ -17,6 +17,7 @@
   --retro-button-bg: #f5cc4b;
   --retro-button-bg-hover: #ffe080;
   --retro-pixel-grid: rgb(0 0 0 / 0.08);
+  --canadian-red: #dc3b32;
 }
 
 /* Tailwind v4 theme bridge: exposes CSS variables as utility tokens. */
@@ -185,4 +186,15 @@ body {
   100% {
     background-position: -1600px bottom;
   }
+}
+
+/* Canadian red hover effects */
+a:hover,
+button:hover {
+  color: var(--canadian-red);
+}
+
+.group:hover {
+  border-color: var(--canadian-red) !important;
+  box-shadow: 0 0 12px rgba(220, 59, 50, 0.6) !important;
 }
