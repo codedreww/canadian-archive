@@ -17,6 +17,11 @@ function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
+function colorNumberToCss(color, fallback = "#f59e0b") {
+  if (typeof color !== "number" || Number.isNaN(color)) return fallback;
+  return `#${color.toString(16).padStart(6, "0")}`;
+}
+
 function isSameNodeFocus(a, b) {
   if (a === b) return true;
   if (!a || !b) return false;
@@ -354,7 +359,7 @@ export default function EraScene({
           x2={maxX}
           y2={baselineY}
           stroke="#7dd3fc"
-          strokeWidth="4"
+          strokeWidth="5"
           strokeOpacity="0.88"
         />
 
@@ -362,6 +367,7 @@ export default function EraScene({
           const isCurrentEra = branch.eraId === eraId;
           const isNear = branch.id === nearBranchId;
           const isActive = branch.id === activeBranchId;
+          const activeEraColor = colorNumberToCss(selectedEra?.pathColor, "#f59e0b");
 
           return (
             <g key={branch.id}>
@@ -370,9 +376,9 @@ export default function EraScene({
                 y1={branch.startY}
                 x2={branch.x}
                 y2={branch.endY}
-                stroke={isCurrentEra ? "#f59e0b" : "#94a3b8"}
-                strokeWidth={isActive ? 4 : 2}
-                strokeOpacity={isNear || isActive ? 1 : 0.75}
+                stroke={isCurrentEra ? activeEraColor : "#94a3b8"}
+                strokeWidth={isActive ? 8 : 5}
+                strokeOpacity={isNear || isActive ? 1 : 0.85}
               />
               <circle
                 cx={branch.x}
