@@ -58,7 +58,93 @@ export const EVENTS_BY_ERA = {
 
   // other eras can be added later:
   era1: [],
-  era2: [],
+  era2: [
+    {
+    id: "era2-1",
+    title: "Jacques Cartier’s First Voyage (1534)",
+    x: 90,
+    y: 150,
+    summary:
+      "In 1534, Jacques Cartier reached the Gaspé Peninsula and claimed the land for France, starting long-term European interest in the region.",
+    whyItMatters: [
+      "Marks an early French claim and exploration milestone.",
+      "Helps explain why France expanded settlement later.",
+      "Connects to early contact between Europeans and Indigenous peoples.",
+    ],
+    images: [{ src: "/eras_2_images/cartier_gaspe_1534.jpg", alt: "Jacques Cartier at Gaspé (1534)" }],
+  },
+  {
+    id: "era2-2",
+    title: "Founding of Quebec City (1608)",
+    x: 210,
+    y: 540,
+    summary:
+      "In 1608, Samuel de Champlain founded Quebec City, which became the capital of New France and a major centre of the fur trade.",
+    whyItMatters: [
+      "Represents the growth of permanent French settlement.",
+      "Anchored political power and trade networks in New France.",
+      "Shaped alliances, conflict, and cultural development in the region.",
+    ],
+    images: [{ src: "/eras_2_images/founding_quebec_1608.jpg", alt: "Founding of Quebec City (1608)" }],
+  },
+  {
+    id: "era2-3",
+    title: "Beaver Wars Begin (c. 1640s)",
+    x: 330,
+    y: 160,
+    summary:
+      "Beginning in the 1640s, conflicts in the Great Lakes and St. Lawrence regions intensified over control of fur trade routes, involving the Haudenosaunee, the French, and their Indigenous allies.",
+    whyItMatters: [
+      "Explains major shifts in Indigenous alliances and territory.",
+      "Shows how the fur trade shaped conflict and diplomacy.",
+      "Helps understand the long-term impact of colonial trade competition.",
+    ],
+    images: [{ src: "/eras_2_images/beaver_wars_1640s.jpg", alt: "Beaver Wars (fur trade conflicts)" }],
+  },
+  {
+    id: "era2-4",
+    title: "Creation of the Hudson’s Bay Company (1670)",
+    x: 450,
+    y: 530,
+    summary:
+      "In 1670, the British Crown chartered the Hudson’s Bay Company, granting it control over trade in Rupert’s Land and expanding the fur trade across northern Canada.",
+    whyItMatters: [
+      "Created one of the most powerful trading companies in North America.",
+      "Expanded British economic influence across northern territories.",
+      "Shaped settlement, mapping, and relationships with Indigenous nations.",
+    ],
+    images: [{ src: "/eras_2_images/hbc_1670.jpg", alt: "Hudson’s Bay Company (1670)" }],
+  },
+  {
+    id: "era2-5",
+    title: "Great Peace of Montreal (1701)",
+    x: 570,
+    y: 170,
+    summary:
+      "In 1701, France and more than 30 Indigenous nations signed a peace agreement in Montreal, helping end decades of conflict and strengthening diplomacy and trade.",
+    whyItMatters: [
+      "Highlights Indigenous diplomacy and nation-to-nation agreements.",
+      "Reduced conflict and stabilized regional trade networks.",
+      "A key example of negotiation shaping Canadian history.",
+    ],
+    images: [{ src: "/eras_2_images/great_peace_montreal_1701.jpg", alt: "Great Peace of Montreal (1701)" }],
+  },
+  {
+    id: "era2-6",
+    title: "Battle of the Plains of Abraham (1759)",
+    x: 690,
+    y: 550,
+    summary:
+      "In 1759, British forces defeated the French near Quebec City at the Plains of Abraham, leading to British control of New France.",
+    whyItMatters: [
+      "Major turning point that shifted Canada from French to British rule.",
+      "Changed politics, language, and law across the region.",
+      "Sets up the transition into the next era of British North America.",
+    ],
+    images: [{ src: "/eras_2_images/plains_of_abraham_1759.jpg", alt: "Plains of Abraham (1759)" }],
+  },
+],
+
   era3: [],
   era4: [],
   era5: [
