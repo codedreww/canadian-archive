@@ -101,6 +101,7 @@ export default function HomePage() {
         className="home-bg-scroll pointer-events-none fixed inset-0"
         style={{
           backgroundImage: "url('/home/homepage_bg.png')",
+          
         }}
       />
       <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(180deg,rgba(236,236,236,0.55)_0%,rgba(236,236,236,0.25)_45%,rgba(236,236,236,0.7)_100%)]" />
