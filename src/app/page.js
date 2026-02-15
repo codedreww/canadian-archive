@@ -40,6 +40,14 @@ const HOME_DATA = {
   },
 };
 
+const DEVELOPERS = [
+  { name: "Andrew", linkedin: "https://www.linkedin.com/in/andrew-placeholder/" },
+  { name: "Sagesse", linkedin: "https://www.linkedin.com/in/sagesse-placeholder/" },
+  { name: "Namy", linkedin: "https://www.linkedin.com/in/namy-placeholder/" },
+  { name: "Chris", linkedin: "https://www.linkedin.com/in/chris-placeholder/" },
+  { name: "Cellou", linkedin: "https://www.linkedin.com/in/cellou-placeholder/" },
+];
+
 function MapleLeaf({ className = "h-7 w-7 text-[#dc3b32]" }) {
   return (
     <svg viewBox="0 0 512 512" className={className} fill="currentColor" aria-hidden="true">
@@ -95,6 +103,17 @@ export default function HomePage() {
           <p className="mx-auto mt-5 max-w-4xl text-[10px] leading-loose text-[#33445d] md:text-xs">
             Step through Canada's defining eras and uncover the stories that shaped a nation.
           </p>
+          <details className="mx-auto mt-4 max-w-3xl text-left">
+            <summary className="inline-block cursor-pointer border-[4px] border-[#6e3d2e] bg-[#f7efe2] px-3 py-2 text-[10px] text-[#1e2f4d] shadow-[0_0_0_3px_#aa4434] md:text-xs">
+              Why This Matters
+            </summary>
+            <div className="mt-3 border-[4px] border-[#6e3d2e] bg-[#f7efe2] p-3 text-[9px] leading-loose text-[#2f435d] shadow-[0_0_0_3px_#aa4434] md:text-[11px]">
+              Topic 2 is about preserving archives so future Canadians can access culture, evidence, and lived stories.
+              This timeline shows how past decisions still shape daily life today, from land and language to transit,
+              institutions, and identity. Keeping the archive train moving protects memory, improves civic trust, and
+              helps future builders make better choices.
+            </div>
+          </details>
         </header>
 
         <main className="flex-1">
@@ -108,9 +127,14 @@ export default function HomePage() {
         <footer className="mt-7 border-[6px] border-[#6e3d2e] bg-[#f7efe2] px-4 py-3 text-[10px] text-[#33445d] shadow-[0_0_0_4px_#aa4434] md:text-xs">
           <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
             <span>(c) 2026 Canadian Archive</span>
-            <Link href="/team" className="text-[#bf3a32] hover:underline">
-              Developers: Andrew, Sagesse, Namy, Chris, Cellou
-            </Link>
+            <div className="flex flex-wrap items-center gap-2 text-[#bf3a32]">
+              <span className="text-[#33445d]">Developers:</span>
+              {DEVELOPERS.map((dev) => (
+                <a key={dev.name} href={dev.linkedin} target="_blank" rel="noreferrer" className="hover:underline">
+                  {dev.name}
+                </a>
+              ))}
+            </div>
           </div>
         </footer>
       </div>
