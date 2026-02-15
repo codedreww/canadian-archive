@@ -206,6 +206,27 @@ body {
   }
 }
 
+/* Era background pan layer (scrolls slowly left-to-right). */
+
+.era-bg-scroll {
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: 0 50%;
+  animation: era-pan 50s linear infinite;
+  will-change: background-position;
+}
+
+@keyframes era-pan {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    /* Move one full viewport-width to the right so speed
+       feels consistent on all screen sizes. */
+    background-position: 100vw 50%;
+  }
+}
+
 /* Canadian red hover effects */
 a:hover,
 button:hover {
