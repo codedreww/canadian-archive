@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Canadian Archive Banner](./public/readme/radme-banner.png)
+
+# Canadian Archive
+
+Interactive Canadian history experience built with **Next.js + PixiJS**.
+
+## Quick Links
+
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Environment Setup](#environment-setup)
+- [Project Structure](#project-structure)
+- [Routes](#routes)
+- [Assets](#assets)
+- [Team](#team)
+
+## Overview
+
+Canadian Archive combines:
+
+- A pixel-art inspired homepage with clickable era cards
+- Interactive era gameplay screens (`/era/[eraId]`)
+- A lightweight Gemini chat endpoint for in-era Q&A
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- PixiJS + `@pixi/react`
+- Tailwind CSS v4
+- Google GenAI SDK (`@google/genai`)
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Set local environment variables
+
+Create `.env.local` in the project root:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+```
+
+### 3. Start dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Environment Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`.env.local` is for local secrets and machine-specific config.
 
-## Learn More
+- Required key: `GEMINI_API_KEY`
+- Used by: `src/app/api/chat/route.js`
+- Do not commit this file to git
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - Start local development server
+- `npm run build` - Build production bundle
+- `npm run start` - Run production server
+- `npm run lint` - Run ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+src/
+  app/
+    page.js                 # Homepage (cards, theme, footer links)
+    era/[eraId]/page.js     # Era route; mounts GameRoot + EraChatbot
+    api/chat/route.js       # Gemini chat endpoint
+    globals.css             # Global styles
+  game/
+    GameRoot.js
+    scenes/EraScene.js
+    systems/useKeyboard.js
+    data/eras.js
+    data/events.js
+  ui/
+    HUD.js
+    NodeInfoCard.js
+    OpenEventModal.js
+    EraChatbot.js
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+public/
+  bg/                       # Era gameplay backgrounds
+  home/                     # Homepage visual assets
+  sprites/                  # Character/era sprites
+  eras_*_images/            # Era content image sets
+  readme/                   # README visual assets
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Routes
+
+- `/` - Homepage (era selection)
+- `/era/era1` ... `/era/era6` - Interactive era screens
+- `/api/chat` - Chat API (`POST { "message": "..." }`)
+
+## Assets
+
+Current homepage expects:
+
+- `public/home/homepage_bg1.png`
+- `public/home/maple-leaf.png`
+- `public/home/cards/era1.png` ... `public/home/cards/era6.png`
+
+README visual asset:
+
+- `public/readme/readme-banner.svg`
+
+## Team
+
+Homepage footer links currently include:
+
+- Andrew
+- Sagesse
+- Namys
+- Chris
+- Cellou
+
+LinkedIn links are configured in `src/app/page.js` under `DEVELOPERS`.
+
+## Contribution Notes
+
+- Keep homepage updates scoped to `src/app/page.js` and `public/home/*`
+- Keep gameplay updates scoped to `src/game/*` and `src/ui/*`
+- Keep API changes scoped to `src/app/api/*`
