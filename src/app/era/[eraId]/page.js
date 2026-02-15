@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ERAS } from "@/game/data/eras";
 import GameRoot from "@/game/GameRoot";
 import EraChatbot from "@/ui/EraChatbot";
+import MusicButton from "@/ui/MusicButton";
+
+
 
 export default async function EraPage({ params }) {
   const { eraId } = await params;
@@ -24,6 +27,9 @@ export default async function EraPage({ params }) {
     <main className="fixed inset-0 overflow-hidden bg-[#05070b] text-white">
       <GameRoot era={era} />
       <EraChatbot era={era} />
+      <div className="fixed right-4 top-4 z-50">
+    <MusicButton />
+  </div>
     </main>
   );
 }
