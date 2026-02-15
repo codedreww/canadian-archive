@@ -12,6 +12,7 @@ const BRANCH_EXIT_RADIUS = 28;
 const ENDPOINT_RADIUS = 7;
 const NODE_INFO_ENTER_DISTANCE = 44;
 const NODE_INFO_EXIT_DISTANCE = 62;
+const BRANCH_LENGTH_SCALE = 0.75;
 const PLAYER_MOVE_EPSILON = 0.05;
 const PLAYER_FRAME_INTERVAL_MS = 240;
 const PLAYER_SPRITE_WIDTH = 56;
@@ -55,10 +56,15 @@ export default function EraScene({
   const baselineY = Math.round(height * 0.5);
   const minX = 56;
   const maxX = Math.max(minX + 1, width - 56);
-  const branchLength = clamp(
-    Math.round(height * 0.26),
-    56,
-    Math.max(56, Math.floor(height * 0.5) - 34),
+  const branchLength = Math.max(
+    1,
+    Math.round(
+      clamp(
+        Math.round(height * 0.26),
+        56,
+        Math.max(56, Math.floor(height * 0.5) - 34),
+      ) * BRANCH_LENGTH_SCALE,
+    ),
   );
   const selectedEra = useMemo(
     () => eras.find((era) => era.id === eraId) ?? eras[0] ?? null,
