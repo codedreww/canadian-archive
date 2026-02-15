@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="96" viewBox="0 0 64 96" shape-rendering="crispEdges">
+<g stroke-linejoin="miter" stroke-linecap="butt">
+<rect x="28" y="60" width="6" height="18" fill="#2F2F33" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="28" y="78" width="7" height="10" fill="#1F1F1F" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="36" y="60" width="6" height="18" fill="#2F2F33" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="35" y="78" width="8" height="10" fill="#1F1F1F" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="24" y="32" width="20" height="22" fill="#5E6F8F" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="26" y="54" width="18" height="6" fill="#2B2B2B" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="22" y="36" width="6" height="14" fill="#5E6F8F" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="20" y="48" width="6" height="10" fill="#C58C6C" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="40" y="36" width="6" height="14" fill="#5E6F8F" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="42" y="48" width="6" height="10" fill="#C58C6C" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="26" y="14" width="16" height="16" fill="#C58C6C" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="32" y="30" width="4" height="2" fill="#C58C6C" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="36" y="22" width="2" height="2" fill="#111111" stroke="none" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="34" y="21" width="4" height="1" fill="#111111" stroke="none" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="39" y="24" width="2" height="2" fill="#C58C6C" stroke="#1b1b1b" stroke-width="1" shape-rendering="crispEdges"/>
+<rect x="35" y="28" width="4" height="1" fill="#111111" stroke="none" stroke-width="1" shape-rendering="crispEdges"/>
+</g>
+</svg>

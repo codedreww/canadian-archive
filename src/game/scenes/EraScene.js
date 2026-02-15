@@ -18,7 +18,12 @@ const PLAYER_SPRITE_WIDTH = 56;
 const PLAYER_SPRITE_HEIGHT = 96;
 const PLAYER_BOB_PX = 2;
 const PLAYER_SPRITES_BY_ERA = {
+  era1: ["/sprites/era1/era1_idle.svg", "/sprites/era1/era1_walk.svg"],
+  era2: ["/sprites/era2/era2_idle.svg", "/sprites/era2/era2_walk.svg"],
   era3: ["/sprites/era3/soldier_idle.svg", "/sprites/era3/soldier_walk.svg"],
+  era4: ["/sprites/era4/era4_idle.svg", "/sprites/era4/era4_walk.svg"],
+  era5: ["/sprites/era5/era5_idle.svg", "/sprites/era5/era5_walk.svg"],
+  era6: ["/sprites/era6/era6_idle.svg", "/sprites/era6/era6_walk.svg"],
 };
 
 function clamp(value, min, max) {
