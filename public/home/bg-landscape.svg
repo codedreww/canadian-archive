@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1200">
+  <g shape-rendering="crispEdges">
+    <rect width="2400" height="1200" fill="#f6e9d3"/>
+    <rect width="2400" height="560" fill="#d98d71"/>
+    <rect y="560" width="2400" height="140" fill="#efb89a"/>
+    <path d="M0 700 L260 560 L520 700 L860 520 L1220 700 L1600 520 L1980 700 L2400 580 L2400 820 L0 820 Z" fill="#6c8f7a"/>
+    <path d="M0 790 L260 690 L520 790 L860 640 L1220 790 L1600 650 L1980 800 L2400 710 L2400 980 L0 980 Z" fill="#557260"/>
+    <rect y="980" width="2400" height="220" fill="#4e6a4f"/>
+    <rect x="1920" y="560" width="24" height="210" fill="#3f5268"/>
+    <rect x="1904" y="534" width="56" height="18" fill="#3f5268"/>
+    <rect x="1908" y="500" width="48" height="24" fill="#3f5268"/>
+    <rect x="1880" y="970" width="40" height="180" fill="#24402f"/>
+    <rect x="1940" y="970" width="28" height="180" fill="#24402f"/>
+    <rect x="1990" y="970" width="32" height="180" fill="#24402f"/>
+    <rect x="2040" y="970" width="28" height="180" fill="#24402f"/>
+    <rect x="2085" y="970" width="34" height="180" fill="#24402f"/>
+  </g>
+</svg>
