@@ -561,6 +561,13 @@ export const EVENTS_BY_ERA = {
           alt: "Battle of Vimy Ridge",
         },
       ],
+      sources: [
+        {
+          label: "Battle of Vimy Ridge (April 9-12, 1917)",
+          href: "https://commons.wikimedia.org/wiki/File:Richard_Jack-The_Taking_of_Vimy_Ridge_(CWM_19710261-0160).jpg",
+          note: 'Tousignant, Pierre. "Constitutional Act, 1791". The Canadian Encyclopedia, 23 April 2020, Historica Canada. Accessed 15 February 2026.',
+        },
+      ],
     },
     {
       id: "era5-2",
@@ -578,6 +585,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_5_images/Anti-conscription_parade_at_Victoria_Square.jpg",
           alt: "Conscription Crisis 1917",
+        },
+      ],
+      sources: [
+        {
+          label: "Conscription Crisis (1917)",
+          href: "https://commons.wikimedia.org/w/index.php?curid=8302392",
+          note: "Unknown author. Library and Archives Canada image. Public Domain. Wikimedia Commons.",
         },
       ],
     },
@@ -599,6 +613,13 @@ export const EVENTS_BY_ERA = {
           alt: "Women gain federal voting rights in 1918",
         },
       ],
+      sources: [
+        {
+          label: "Women’s Suffrage Movement",
+          href: "https://www.govexec.com/management/2019/06/what-womens-suffrage-tells-us-about-empowerment/157450/",
+          note: "Government Executive. 'What Women’s Suffrage Tells Us About Empowerment.' 2019.",
+        },
+      ],
     },
     {
       id: "era5-4",
@@ -616,6 +637,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_5_images/PeaceTreaty.jpg",
           alt: "Canada and Treaty of Versailles",
+        },
+      ],
+      sources: [
+        {
+          label: "Paris Peace Treaty (1919)",
+          href: "https://wartimecanada.ca/sites/default/files/documents/CanadaPeace.1919.pdf",
+          note: "Government of Canada. Canada Peace Treaty document, 1919.",
         },
       ],
     },
@@ -637,6 +665,13 @@ export const EVENTS_BY_ERA = {
           alt: "Winnipeg General Strike of 1919",
         },
       ],
+      sources: [
+        {
+          label: "Winnipeg General Strike (1919)",
+          href: "https://commons.wikimedia.org/w/index.php?curid=3127577",
+          note: "Foote, L.B. Winnipeg General Strike photograph. Library and Archives Canada. Public Domain.",
+        },
+      ],
     },
     {
       id: "era5-6",
@@ -654,6 +689,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_5_images/Great_depression.jpg",
           alt: "The Great Depression in Canada",
+        },
+      ],
+      sources: [
+        {
+          label: "Great Depression Relief March (c. 1930)",
+          href: "https://thecanadianencyclopedia.ca/en/article/great-depression",
+          note: "Library and Archives Canada. The Single Men's Unemployed Association march in Toronto. Courtesy of The Canadian Encyclopedia.",
         },
       ],
     },
@@ -675,6 +717,13 @@ export const EVENTS_BY_ERA = {
           alt: "World War II in Canada",
         },
       ],
+      sources: [
+        {
+          label: "Canadian Sherman Tanks in France (1944)",
+          href: "https://www.warmuseum.ca/remembrance-day-resources/canada-and-the-second-world-war",
+          note: "Grant, Lieut. Donald I. Department of National Defence / Library and Archives Canada.",
+        },
+      ],
     },
     {
       id: "era5-8",
@@ -692,6 +741,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_5_images/Internment_of_japanese_canadians.jpg",
           alt: "Internment of Japanese Canadians",
+        },
+      ],
+      sources: [
+        {
+          label: "Japanese Canadian Internment Relocation (1942)",
+          href: "https://thecanadianencyclopedia.ca/en/article/internment-of-japanese-canadians",
+          note: "Library and Archives Canada. Japanese Canadians being relocated in British Columbia, 1942.",
         },
       ],
     },
