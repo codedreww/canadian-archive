@@ -11,32 +11,32 @@ const HOME_DATA = {
   era1: {
     title: "Indigenous Foundations",
     dates: "Pre-1500s",
-    image: "/home/cards/era1.svg",
+    image: "/home/cards/era1.png",
   },
   era2: {
     title: "Contact & Colonization",
     dates: "1500s-1763",
-    image: "/home/cards/era2.svg",
+    image: "/home/cards/era2.png",
   },
   era3: {
     title: "British North America",
     dates: "1763-1867",
-    image: "/home/cards/era3.svg",
+    image: "/home/cards/era3.png",
   },
   era4: {
     title: "Confederation & Nation-Building",
     dates: "1867-1914",
-    image: "/home/cards/era4.svg",
+    image: "/home/cards/era4.png",
   },
   era5: {
     title: "The World Wars Era",
     dates: "1914-1945",
-    image: "/home/cards/era5.svg",
+    image: "/home/cards/era5.png",
   },
   era6: {
     title: "Modern Canada & Reconciliation",
     dates: "1945-Present",
-    image: "/home/cards/era6.svg",
+    image: "/home/cards/era6.png",
   },
 };
 
@@ -52,7 +52,7 @@ function EraCard({ era }) {
   const home = HOME_DATA[era.id] ?? {
     title: era.title,
     dates: era.years,
-    image: "/home/cards/era1.svg",
+    image: "/home/cards/era1.png",
   };
 
   return (
@@ -77,7 +77,7 @@ export default function HomePage() {
       <div
         className="home-bg-scroll pointer-events-none absolute inset-0 opacity-70"
         style={{
-          backgroundImage: "url('/home/bg-landscape.svg')",
+          backgroundImage: "url('/home/bg-landscape.png')",
           backgroundRepeat: "repeat-x",
           backgroundSize: "1600px auto",
           backgroundPosition: "center bottom",
@@ -93,7 +93,7 @@ export default function HomePage() {
             <MapleLeaf />
           </h1>
           <p className="mx-auto mt-5 max-w-4xl text-[10px] leading-loose text-[#33445d] md:text-xs">
-            A cozy pixel journey through our nation's history. Select an era to begin.
+            Step through Canada's defining eras and uncover the stories that shaped a nation.
           </p>
         </header>
 
