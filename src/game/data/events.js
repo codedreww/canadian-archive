@@ -48,6 +48,13 @@ export const EVENTS_BY_ERA = {
           alt: "Head-Smashed-In Buffalo Jump (Alberta)",
         },
       ],
+      sources: [
+        {
+          label: "Head-Smashed-In Buffalo Jump (c. 3800 BCE, Alberta)",
+          href: "https://whc.unesco.org/en/list/158/" ,
+          note: "UNESCO World Heritage Centre. Head-Smashed-In Buffalo Jump. Archaeological site preserving thousands of years of Plains Indigenous communal hunting practices.",
+        },
+      ],
     },
     {
       id: "era1-2",
@@ -65,6 +72,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_1_images/writing_on_stone.jpg",
           alt: "Writing-on-Stone rock art (Alberta)",
+        },
+      ],
+      sources: [
+        {
+          label: "Writing-on-Stone / Áísínai’pi Rock Art (1050 BCE–1800s, Alberta)",
+          href: "https://parks.canada.ca/culture/spm-whs/sites-canada/sec02t",
+          note: "Parks Canada. Writing-on-Stone Provincial Park / Áísínai’pi. Rock art landscape preserving Indigenous stories, knowledge, and spiritual meaning.",
         },
       ],
     },
@@ -86,6 +100,13 @@ export const EVENTS_BY_ERA = {
           alt: "Thule migration across the Arctic",
         },
       ],
+      sources: [
+        {
+          label: "Thule Expansion Across the Arctic (c. 1200 CE)",
+          href: "https://thecanadianencyclopedia.ca/en/article/thule-culture",
+          note: "The Canadian Encyclopedia. Thule Culture. Archaeological evidence linking ancient Arctic lifeways to Inuit communities today.",
+        },
+      ],
     },
     {
       id: "era1-4",
@@ -103,6 +124,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_1_images/wampum_belts.jpg",
           alt: "Haudenosaunee wampum belts",
+        },
+      ],
+      sources: [
+        {
+          label: "Great Law of Peace & Wampum Belts (Haudenosaunee Confederacy)",
+          href: "https://canadiangeographic.ca/articles/laws-braided-into-belts-three-haudenosaunee-wampum-belts-you-should-know/",
+          note: "Canadian Geographic. Wampum belts as mnemonic records preserving Haudenosaunee laws, treaties, and governance traditions.",
         },
       ],
     },
@@ -124,6 +152,13 @@ export const EVENTS_BY_ERA = {
           alt: "Droulers-Tsiionhiakwatha village site (Québec)",
         },
       ],
+      sources: [
+        {
+          label: "Droulers-Tsiionhiakwatha Village (c. 1450 CE, Québec)",
+          href: "https://www.pc.gc.ca/apps/dfhd/page_nhs_eng.aspx?id=11811",
+          note: "Parks Canada. Droulers-Tsiionhiakwatha National Historic Site. Preserved St. Lawrence Iroquoian agricultural village remains.",
+        },
+      ]
     },
     {
       id: "era1-6",
@@ -143,6 +178,13 @@ export const EVENTS_BY_ERA = {
           alt: "Port au Choix Maritime Archaic Cemetery",
         },
       ],
+      sources: [
+        {
+          label: "Port au Choix Maritime Archaic Cemetery (c. 4400 BCE, Newfoundland & Labrador)",
+          href: "https://www.pc.gc.ca/apps/dfhd/page_nhs_eng.aspx?id=231",
+          note: "Parks Canada. Port au Choix National Historic Site. Coastal burial grounds preserving Maritime Archaic lifeways.",
+        },
+      ]
     },
     {
       id: "era1-7",
@@ -162,6 +204,13 @@ export const EVENTS_BY_ERA = {
           alt: "Serpent Mounds burial complex (Ontario)",
         },
       ],
+      sources: [
+        {
+          label: "Serpent Mounds Burial Complex (c. 50 BCE, Ontario)",
+          href: "https://www.historicplaces.ca/en/rep-reg/place-lieu.aspx?id=14407",
+          note: "Historic Places Canada. Serpent Mounds. Sacred burial complex preserving ceremonial and ancestral practices.",
+        },
+      ],
     },
     {
       id: "era1-8",
@@ -179,6 +228,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_1_images/maize_cultivation.jpg",
           alt: "Early maize cultivation in southern Ontario",
+        },
+      ],
+      sources: [
+        {
+          label: "Early Maize Cultivation in Southern Ontario (c. 500 CE)",
+          href: "https://ontarioarchaeology.org/wp-content/uploads/oa025-04_noble.pdf",
+          note: "Ontario Archaeological Society. Evidence of early maize cultivation and horticultural transition in the Great Lakes region.",
         },
       ],
     },
@@ -202,6 +258,13 @@ export const EVENTS_BY_ERA = {
           alt: "Jacques Cartier at Gaspé (1534)",
         },
       ],
+      sources: [
+        {
+          label: "Jacques Cartier’s First Voyage (1534)",
+          href: "https://www.cwjefferys.ca/jacques-cartier-erects-a-cross-at-gaspe-1534",
+          note: "C.W. Jefferys. Jacques Cartier erects a cross at Gaspé, 1534. Illustration depicting France’s claim to the territory and the beginning of sustained European interest in Canada.",
+        },
+      ],
     },
     {
       id: "era2-2",
@@ -219,6 +282,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_2_images/founding_quebec_1608.jpg",
           alt: "Founding of Quebec City (1608)",
+        },
+      ],
+      sources: [
+        {
+          label: "Founding of Quebec City (1608)",
+          href: "https://commons.wikimedia.org/wiki/File:Fondation_de_la_ville_de_Quebec_par_Samuel_de_Champlain_en_1608.jpg",
+          note: "Wikimedia Commons. Samuel de Champlain founding Quebec City in 1608, establishing the capital of New France and a centre of the fur trade.",
         },
       ],
     },
@@ -240,6 +310,13 @@ export const EVENTS_BY_ERA = {
           alt: "Beaver Wars (fur trade conflicts)",
         },
       ],
+      sources: [
+        {
+          label: "Beaver Wars (c. 1640s)",
+          href: "https://en.wikipedia.org/wiki/Beaver_Wars#/media/File:Champlain-Deffaite-des-Yroquois-au-Lac-Champlain-couleur.png",
+          note: "Illustration of conflicts between the Haudenosaunee, French, and allied Indigenous nations over control of the fur trade in the Great Lakes and St. Lawrence regions.",
+        },
+      ],
     },
     {
       id: "era2-4",
@@ -257,6 +334,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_2_images/hbc_1670.jpg",
           alt: "Hudson’s Bay Company (1670)",
+        },
+      ],
+      sources: [
+        {
+          label: "Creation of the Hudson’s Bay Company (1670)",
+          href: "https://en.wikipedia.org/wiki/Hudson%27s_Bay_Company#/media/File:In_1671_the_Hudson's_Bay_Company_sold_its_first_furs,_in_London.png",
+          note: "Hudson’s Bay Company’s early fur trade operations following its 1670 royal charter granting control over Rupert’s Land.",
         },
       ],
     },
@@ -278,6 +362,13 @@ export const EVENTS_BY_ERA = {
           alt: "Great Peace of Montreal (1701)",
         },
       ],
+      sources: [
+        {
+          label: "Great Peace of Montreal (1701)",
+          href: "https://interestsinthefurtrade.weebly.com/the-great-peace-of-montreal.html",
+          note: "Peace treaty between France and more than 30 Indigenous nations ending decades of conflict and strengthening diplomatic and trade alliances.",
+        },
+      ],
     },
     {
       id: "era2-6",
@@ -295,6 +386,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_2_images/plains_of_abraham_1759.jpg",
           alt: "Plains of Abraham (1759)",
+        },
+      ],
+      sources: [
+        {
+          label: "Battle of the Plains of Abraham (1759)",
+          href: "https://commons.wikimedia.org/wiki/File:PlainesAbraham.jpg",
+          note: "Wikimedia Commons. British victory over French forces at Quebec City, leading to British control of New France.",
         },
       ],
     },
@@ -399,6 +497,7 @@ export const EVENTS_BY_ERA = {
       sources: [
         {
           label: "Image: The Battle of New Orleans",
+          href: "http://thecanadianencyclopedia.ca/en/article/war-of-1812",
           note: "This painting by Edward Percy Moran depicts the last major confrontation of the War of 1812, the Battle of New Orleans. The battle is best remembered for General Andrew Jackson's stiff resistance to British incursion and for the death of British Major General Edward Pakenham.(courtesy Library of Congress / LC-USZC2-3796)",
         },
       ],
@@ -425,6 +524,7 @@ export const EVENTS_BY_ERA = {
         {
           label:
             "Image: attle of St. Eustache Front view of the Church of St. Eustache Occupied by the Insurgents. ",
+          href: "http://thecanadianencyclopedia.ca/en/article/battle-of-st-eustache",
           note: "The Artillery Forcing an Entrance, Artist: Lord Charles Beauclerk, 14 December 1837. Bound in volume entitled, 'Lithographic Views of Military Operations in Canada'. A. Flint: London, 1840. Library and Archives Canada, Acc. No. 1992-566-2",
         },
       ],
@@ -445,6 +545,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_3_images/act_of_union_1840.jpg",
           alt: "Act of Union 1840",
+        },
+      ],
+      sources: [
+        {
+          label: "Act of Union (1840)",
+          href: "http://thecanadianencyclopedia.ca/en/article/act-of-union",
+          note: "Monet, Jacques. Act of Union united Upper and Lower Canada into the Province of Canada and laid groundwork for responsible government.",
         },
       ],
     },
@@ -468,6 +575,13 @@ export const EVENTS_BY_ERA = {
           alt: "Canadian Confederation (1867)",
         },
       ],
+      sources: [
+        {
+          label: "Canadian Confederation (1867)",
+          href: "https://en.wikipedia.org/wiki/Canadian_Confederation#/media/File:Fathers_of_Confederation_LAC_c001855.jpg",
+          note: "Library and Archives Canada. Fathers of Confederation. Formation of the Dominion of Canada uniting Ontario, Quebec, Nova Scotia, and New Brunswick.",
+        },
+      ],
     },
     {
       id: "era4-2",
@@ -485,6 +599,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_4_images/indian_act_1876.jpg",
           alt: "Indian Act (1876)",
+        },
+      ],
+      sources: [
+        {
+          label: "Indian Act (1876)",
+          href: "https://www.timetoast.com/timelines/the-indian-act_tanish",
+          note: "Legislation granting the Canadian government control over Indigenous governance, lands, and legal status.",
         },
       ],
     },
@@ -506,6 +627,13 @@ export const EVENTS_BY_ERA = {
           alt: "Residential school system expansion (1883)",
         },
       ],
+      sources: [
+        {
+          label: "Residential School System Expansion (1880s)",
+          href: "https://en.wikipedia.org/wiki/Canadian_Indian_residential_school_system",
+          note: "Government-supported church-run schools aimed at assimilating Indigenous children and suppressing languages and cultures.",
+        },
+      ],
     },
     {
       id: "era4-4",
@@ -525,6 +653,13 @@ export const EVENTS_BY_ERA = {
           alt: "Banff National Park (1885)",
         },
       ],
+      sources: [
+        {
+          label: "Banff National Park Established (1885)",
+          href: "https://en.wikipedia.org/wiki/Banff_National_Park",
+          note: "Canada’s first national park, established following the discovery of natural hot springs and the expansion of the railway.",
+        },
+      ],
     },
     {
       id: "era4-5",
@@ -542,6 +677,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_4_images/alberta_saskatchewan_1905.jpg",
           alt: "Alberta and Saskatchewan become provinces (1905)",
+        },
+      ],
+      sources: [
+        {
+          label: "Alberta & Saskatchewan Become Provinces (1905)",
+          href: "https://commons.wikimedia.org/wiki/File:Canada_provinces_1905-1912.png",
+          note: "Map showing the creation of Alberta and Saskatchewan, marking western expansion and prairie settlement.",
         },
       ],
     },
@@ -565,9 +707,9 @@ export const EVENTS_BY_ERA = {
       ],
       sources: [
         {
-          label: "Act of Union",
-          href: "https://thecanadianencyclopedia.ca/en/article/act-of-union",
-          note: 'Monet, S.J., Jacques. "Act of Union". The Canadian Encyclopedia, 27 September 2019, Historica Canada. Accessed 15 February 2026.',
+          label: "Canada Enters World War I (1914)",
+          href: "https://en.wikipedia.org/wiki/Canada_in_World_War_I#/media/File:48th_Highlanders,_12th_Infantry,_&_10th_Royal_leave_Toronto_for_camp_(LOC_ggbain.16977).jpg",
+          note: "Library of Congress image. Canadian troops departing for war following Britain’s declaration, marking Canada’s global military involvement.",
         },
       ],
     },
@@ -801,6 +943,13 @@ export const EVENTS_BY_ERA = {
           alt: "Canadian Citizenship Act 1947",
         },
       ],
+      sources: [
+        {
+          label: "Canadian Citizenship Act (1947)",
+          href: "https://thecanadianencyclopedia.ca/en/article/citizenship",
+          note: "The Canadian Encyclopedia. The Citizenship Act created a distinct Canadian citizenship, strengthening national identity and legal independence.",
+        },
+      ],
     },
     {
       id: "era6-2",
@@ -818,6 +967,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_6_images/alouette_1_1962.jpg",
           alt: "Alouette 1 Satellite 1962",
+        },
+      ],
+      sources: [
+        {
+          label: "Alouette 1 Satellite Launch (1962)",
+          href: "https://ingeniumcanada.org/channel/articles/alouette-gentille-alouette-alouette-je-te-lancerai-or-how-the-cold-war-propelled",
+          note: "Ingenium Canada. Alouette 1 made Canada the third country to design and launch its own satellite, advancing space science and communications research.",
         },
       ],
     },
@@ -839,6 +995,13 @@ export const EVENTS_BY_ERA = {
           alt: "Universal Healthcare Canada 1966",
         },
       ],
+      sources: [
+        {
+          label: "Universal Healthcare – Medical Care Act (1966)",
+          href: "https://brighttax.com/blog/how-healthcare-in-canada-actually-works/",
+          note: "Medical Care Act established universal publicly funded healthcare, ensuring access regardless of income and becoming a defining national social policy.",
+        },
+      ],
     },
     {
       id: "era6-4",
@@ -856,6 +1019,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_6_images/constitution_act_1982.jpg",
           alt: "Constitution Act 1982 and Charter of Rights",
+        },
+      ],
+      sources: [
+        {
+          label: "Constitution Act & Charter of Rights and Freedoms (1982)",
+          href: "https://thecanadianencyclopedia.ca/en/article/constitution-act-1867",
+          note: "The Canadian Encyclopedia. Patriation of the Constitution granted Canada full legal independence and introduced the Charter of Rights and Freedoms.",
         },
       ],
     },
@@ -877,6 +1047,13 @@ export const EVENTS_BY_ERA = {
           alt: "Calgary Winter Olympics 1988",
         },
       ],
+      sources: [
+        {
+          label: "Calgary Winter Olympics (1988)",
+          href: "https://en.wikipedia.org/wiki/1988_Winter_Olympics",
+          note: "Calgary hosted Canada’s first Winter Olympics, elevating the city’s global profile and advancing winter sport infrastructure.",
+        },
+      ],
     },
     {
       id: "era6-6",
@@ -894,6 +1071,13 @@ export const EVENTS_BY_ERA = {
         {
           src: "/eras_6_images/archie_search_engine_1990.jpg",
           alt: "Archie Search Engine 1990",
+        },
+      ],
+      sources: [
+        {
+          label: "Archie Search Engine Invented (1990)",
+          href: "https://www.rellify.com/blog/evolution-of-search-engines",
+          note: "Developed at McGill University, Archie became the world’s first internet search engine, transforming how information is discovered online.",
         },
       ],
     },
@@ -914,6 +1098,13 @@ export const EVENTS_BY_ERA = {
           src: "/eras_6_images/java_1995.jpg",
           alt: "Java programming language release 1995",
         },
+      ],
+      sources: [
+        {
+        label: "Java Programming Language Released (1995)",
+        href: "https://en.wikipedia.org/wiki/Java_(programming_language)",
+        note: "Created by James Gosling, a University of Calgary alumnus, Java became one of the world’s most widely used programming languages.",
+      },
       ],
     },
   ],
