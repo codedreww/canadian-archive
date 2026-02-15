@@ -40,6 +40,15 @@ const HOME_DATA = {
   },
 };
 
+const ERA_ACCENTS = {
+  era1: "#2b8a6e",
+  era2: "#33658a",
+  era3: "#5d4e89",
+  era4: "#9b6b2f",
+  era5: "#9b2f2f",
+  era6: "#2f6f9b",
+};
+
 function MapleLeaf({ className = "h-7 w-7" }) {
   return (
     <img
@@ -57,18 +66,30 @@ function EraCard({ era }) {
     dates: era.years,
     image: "/home/cards/era1.png",
   };
+  const accent = ERA_ACCENTS[era.id] ?? "#364152";
 
   return (
     <Link
       href={`/era/${era.id}`}
-      className="group block overflow-hidden border-[4px] border-[#dc3b32] transition duration-150"
+      className="group retro-panel retro-copy block overflow-hidden transition duration-150"
+      style={{ borderColor: accent }}
     >
-      <div className="h-[15.5rem] bg-[#b9c9d4]">
-        <img src={home.image} alt={home.title} className="h-full w-full object-cover [image-rendering:pixelated]" />
+      <div className="text-base font-bold leading-relaxed text-[#1c1f26] " style={{ borderBottomColor: accent }}>
+        {home.dates}
       </div>
-      <div className="bg-[#ececec] px-4 py-4">
-        <h2 className={`${pixel.className} text-sm leading-relaxed text-[#1c1f26]`}>{home.title}</h2>
-        <p className={`${pixel.className} mt-2 text-xs text-[#364152]`}>{home.dates}</p>
+      <div className="retro-frame border-0 border-b-4 p-0" style={{ borderBottomColor: accent }}>
+        <img
+          src={home.image}
+          alt={home.title}
+          className="retro-pixel-image h-[15.5rem] w-full object-cover"
+        />
+      </div>
+      <div className="relative overflow-hidden px-4 py-4">
+        <div className="retro-scanlines pointer-events-none absolute inset-0 opacity-20" />
+        <div className="relative">
+          <h2 className="text-base font-bold leading-relaxed text-[#1c1f26]">{home.title}</h2>
+          <p className="retro-meta mt-2 text-xs font-semibold">Enter Era</p>
+        </div>
       </div>
     </Link>
   );
