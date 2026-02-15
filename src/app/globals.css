@@ -189,18 +189,20 @@ body {
 /* Homepage background pan layer (scrolls slowly right-to-left). */
 .home-bg-scroll {
   background-repeat: repeat-x;
-  background-size: auto 100%;
-  background-position: 0% 50%;
-  animation: home-pan 25s linear infinite;
+  background-size: cover;
+  background-position: 0 50%;
+  animation: home-pan 35s linear infinite;
   will-change: background-position;
 }
 
 @keyframes home-pan {
   0% {
-    background-position: 0% 50%;
+    background-position: 0 50%;
   }
   100% {
-    background-position: -100% 50%;
+    /* Move one full viewport-width to the left so speed
+       feels consistent on all screen sizes. */
+    background-position: -100vw 50%;
   }
 }
 
