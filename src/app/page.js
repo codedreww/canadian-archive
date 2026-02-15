@@ -1,6 +1,9 @@
+"use client";
 import { Geist_Mono } from "next/font/google";
 import { ERAS } from "@/game/data/eras";
 import HomeEraSelector from "@/ui/HomeEraSelector";
+import { useAudio } from "@/ui/AudioProvider";
+import { useState } from "react";
 
 const pixel = Geist_Mono({
   weight: "400",
@@ -72,6 +75,8 @@ function MapleLeaf({ className = "h-7 w-7" }) {
 }
 
 export default function HomePage() {
+  const { enabled, toggle } = useAudio();
+  const [hover, setHover] = useState(false);
   return (
     <div className={`${pixel.className} relative min-h-screen bg-[#ececec] text-[#171717]`}>
       <div
@@ -82,6 +87,24 @@ export default function HomePage() {
         }}
       />
       <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(180deg,rgba(236,236,236,0.55)_0%,rgba(236,236,236,0.25)_45%,rgba(236,236,236,0.7)_100%)]" />
+
+      {/* Music toggle button (top right) */}
+      <button
+        type="button"
+        aria-label={enabled ? "Pause music" : "Play music"}
+        onClick={toggle}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        className="fixed right-5 top-5 z-50 flex items-center gap-2 rounded-full border-2 border-[#f5cc4b] bg-[#fff4df]/90 px-3 py-1.5 shadow-md transition-all duration-150 hover:bg-[#ffe080] focus:outline-none focus:ring-2 focus:ring-[#f5cc4b]"
+        style={{ opacity: 0.92 }}
+      >
+        <span className="text-xl">
+          {enabled ? "🔊" : "🔇"}
+        </span>
+        <span className="text-xs font-semibold text-[#b45309]" style={{ opacity: hover ? 1 : 0.7 }}>
+          {enabled ? "Music On" : "Music Off"}
+        </span>
+      </button>
 
       <div className="relative z-10 mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-6 pt-8 md:px-8">
         <header className="py-7 text-center">

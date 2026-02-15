@@ -28,7 +28,7 @@ export function AudioProvider({ children }) {
       const a = audioRef.current;
       if (!a) return;
       try {
-        a.volume = 0.2;
+        a.volume = 0.25;
         await a.play();
       } catch (e) {
         console.log("Autoplay blocked:", e);
@@ -49,7 +49,7 @@ export function AudioProvider({ children }) {
     setEnabled(true);
     if (!a) return;
     try {
-      a.volume = 0.2;
+      a.volume = 0.45;
       await a.play();
     } catch (e) {
       console.log("Play blocked until interaction:", e);
