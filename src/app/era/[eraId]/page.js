@@ -20,21 +20,8 @@ export default async function EraPage({ params }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#05070b] px-6 py-10 text-white">
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-6 flex items-end justify-between gap-4">
-          <div>
-            <div className="text-xs text-white/60">{era.years}</div>
-            <h2 className="text-2xl font-semibold">{era.title}</h2>
-          </div>
-          <Link className="text-sm text-white/80 underline" href="/">
-            ← Back to era selection
-          </Link>
-        </div>
-
-        {/* Game Frame */}
-        <GameRoot era={era} />
-      </div>
+    <main className="h-screen w-screen overflow-hidden bg-[#05070b] text-white">
+      <GameRoot era={era} />
     </main>
   );
 }

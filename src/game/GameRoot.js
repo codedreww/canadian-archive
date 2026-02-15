@@ -9,47 +9,65 @@
 "use client";
 
 import { Application, extend } from "@pixi/react";
-import { Container, Graphics } from "pixi.js";
-import { useMemo, useState } from "react";
+import { Container, Graphics, Sprite, Texture } from "pixi.js";
+import { useEffect, useMemo, useRef, useState } from "react";
 import EraScene from "./scenes/EraScene";
 import HUD from "@/ui/HUD";
 import OpenEventModal from "@/ui/OpenEventModal";
 import { EVENTS_BY_ERA } from "@/game/data/events";
+import { getEraBackgroundPath } from "@/game/data/eras";
 
-extend({ Container, Graphics });
+extend({ Container, Graphics, Sprite });
 
 export default function GameRoot({ era }) {
-  const width = 960;
-  const height = 540;
+  const wrapperRef = useRef(null);
 
-  // Load events for the chosen era
+  // Responsive size state
+  const [size, setSize] = useState({ width: 960, height: 540 });
+
+  useEffect(() => {
+    const update = () => {
+      if (!wrapperRef.current) return;
+      const rect = wrapperRef.current.getBoundingClientRect();
+      setSize({
+        width: Math.floor(rect.width),
+        height: Math.floor(rect.height),
+      });
+    };
+
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   const events = useMemo(() => {
     const id = era?.id;
     return id && EVENTS_BY_ERA[id] ? EVENTS_BY_ERA[id] : [];
   }, [era]);
 
-  // Modal state
   const [activeEvent, setActiveEvent] = useState(null);
-
-  // HUD prompt state
   const [prompt, setPrompt] = useState(null);
-
-  // Pause game when modal is open
   const paused = Boolean(activeEvent);
 
-  // Your remount key (keeps Pixi stable across era changes)
+  // Per-era background placeholder
+  const backgroundPath = getEraBackgroundPath(era?.id);
+
   const [appInstanceKey] = useState(
     () =>
-      `${era?.id ?? "era"}-${Date.now()}-${Math.random().toString(36).slice(2)}`,
+      `${era?.id ?? "era"}-${Date.now()}-${Math.random()
+        .toString(36)
+        .slice(2)}`,
   );
 
   return (
-    <div className="relative h-[540px] w-[960px] overflow-hidden rounded-2xl border border-white/10 bg-black shadow-2xl">
+    // Fullscreen wrapper
+    <div ref={wrapperRef} className="relative h-[calc(100vh-160px)] w-full">
+      {/* If you want true fullscreen with no margins, use: h-screen w-screen in the parent page */}
       <Application
         key={appInstanceKey}
         className="h-full w-full"
-        width={width}
-        height={height}
+        width={size.width}
+        height={size.height}
         antialias
         autoStart
         sharedTicker={false}
@@ -57,8 +75,10 @@ export default function GameRoot({ era }) {
         background={0x0b0f17}
       >
         <EraScene
-          width={width}
-          height={height}
+          width={size.width}
+          height={size.height}
+          eraId={era?.id}
+          backgroundPath={backgroundPath}
           events={events}
           paused={paused}
           onNearEventChange={(ev) => setPrompt(ev ? ev.title : null)}

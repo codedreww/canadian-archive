@@ -10,12 +10,15 @@
   - Calls GameRoot when an event is opened
 */
 
+import { Assets } from "pixi.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useKeyboard from "../systems/useKeyboard";
 
 export default function EraScene({
   width,
   height,
+  eraId,
+  backgroundPath,
   events = [],
   paused = false,
   onOpenEvent,
@@ -28,6 +31,37 @@ export default function EraScene({
 
   const nearEventRef = useRef(null);
   const eLatch = useRef(false);
+
+  // ==========================
+  // Background image loading
+  // ==========================
+
+  const [bgTexture, setBgTexture] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadBg() {
+      if (!backgroundPath) {
+        setBgTexture(null);
+        return;
+      }
+
+      try {
+        const tex = await Assets.load(backgroundPath);
+        if (!cancelled) setBgTexture(tex);
+      } catch (e) {
+        // fallback if image missing
+        if (!cancelled) setBgTexture(null);
+      }
+    }
+
+    loadBg();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [backgroundPath]);
 
   const PROXIMITY_RADIUS = 44;
 
@@ -120,14 +154,29 @@ export default function EraScene({
   // Using pixiGraphics / pixiContainer tags (Pixi React v8)
   return (
     <pixiContainer>
-      {/* Background */}
+      {/* Background Image */}
+      {bgTexture ? (
+        <pixiSprite
+          texture={bgTexture}
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+        />
+      ) : (
+        <pixiGraphics
+          draw={(g) => {
+            g.clear();
+            g.rect(0, 0, width, height).fill(0x0b0f17);
+            g.roundRect(18, 18, width - 36, height - 36, 16).fill(0x111827);
+          }}
+        />
+      )}
+
+      {/* Optional lighting overlay (does NOT repaint the base) */}
       <pixiGraphics
         draw={(g) => {
           g.clear();
-          g.rect(0, 0, width, height).fill(0x0b0f17);
-          g.roundRect(18, 18, width - 36, height - 36, 16).fill(0x111827);
-
-          // subtle lighting
           g.circle(width * 0.25, height * 0.25, 150).fill({
             color: 0xf59e0b,
             alpha: 0.05,
