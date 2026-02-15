@@ -189,15 +189,23 @@ body {
 /* Homepage background pan (works with background-size: cover). */
 .home-bg-scroll {
   animation: home-pan 80s linear infinite;
+  background-position: 50% 50%;
   will-change: background-position;
 }
 
 @keyframes home-pan {
   0% {
-    background-position: 50% 100%;
+    background-position: 50% 50%;
   }
   100% {
-    background-position: 0% 100%;
+    /* Pan by a viewport-relative distance so it still moves on ultrawide/large screens. */
+    background-position: calc(50% - 80vw) 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-bg-scroll {
+    animation: none;
   }
 }
 
