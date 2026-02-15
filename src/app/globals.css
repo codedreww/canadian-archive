@@ -1,10 +1,25 @@
 @import "tailwindcss";
 
 :root {
+  /* Base app tokens. */
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Retro theme tokens used by modal and reusable UI blocks. */
+  --retro-ink: #1c1f26;
+  --retro-panel: #ececec;
+  --retro-bar: #d6d6d6;
+  --retro-subtle: #364152;
+  --retro-callout-bg: #fff4df;
+  --retro-callout-ink: #943b1c;
+  --retro-link-bg: #e8f0ff;
+  --retro-link-bg-hover: #d7e5ff;
+  --retro-button-bg: #f5cc4b;
+  --retro-button-bg-hover: #ffe080;
+  --retro-pixel-grid: rgb(0 0 0 / 0.08);
 }
 
+/* Tailwind v4 theme bridge: exposes CSS variables as utility tokens. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,6 +38,140 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Backdrop tint used behind dialogs/overlays. */
+.retro-overlay {
+  background: rgb(0 0 0 / 55%);
+}
+
+/* Main 8-bit panel shell (thick border + offset shadow). */
+.retro-panel {
+  border: 4px solid var(--retro-ink);
+  background: var(--retro-panel);
+  color: #14171f;
+  box-shadow:
+    4px 0 0 var(--retro-ink),
+    0 4px 0 var(--retro-ink),
+    8px 8px 0 var(--retro-ink);
+  image-rendering: pixelated;
+}
+
+/* Subtle CRT-style scanline texture layer. */
+.retro-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgb(0 0 0 / 0.06) 2px,
+    rgb(0 0 0 / 0.06) 4px
+  );
+}
+
+/* Pixel grid + scanline blend for stronger 8-bit ambience. */
+.retro-pixel-noise {
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 3px, var(--retro-pixel-grid) 3px 4px),
+    repeating-linear-gradient(90deg, transparent 0 3px, var(--retro-pixel-grid) 3px 4px);
+}
+
+/* Header strip style for retro cards/modals. */
+.retro-bar {
+  border-bottom: 4px solid var(--retro-ink);
+  background: var(--retro-bar);
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+}
+
+/* Footer strip matching retro header style. */
+.retro-footer {
+  border-top: 4px solid var(--retro-ink);
+  background: var(--retro-bar);
+}
+
+/* Secondary metadata text color. */
+.retro-meta {
+  color: var(--retro-subtle);
+}
+
+/* Thick-framed container for media blocks. */
+.retro-frame {
+  border: 4px solid var(--retro-ink);
+  background: #fff;
+  box-shadow: inset -4px -4px 0 rgb(0 0 0 / 0.18);
+}
+
+/* Image caption treatment inside retro frames. */
+.retro-caption {
+  border-top: 4px solid var(--retro-ink);
+  background: #f3f3f3;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+}
+
+/* Monospace content copy for the retro voice. */
+.retro-copy {
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+}
+
+/* Highlight box for interpretation / "why this matters" text. */
+.retro-callout {
+  border: 4px solid var(--retro-ink);
+  background: var(--retro-callout-bg);
+}
+
+/* Callout heading accent color. */
+.retro-callout-title {
+  color: var(--retro-callout-ink);
+}
+
+/* Link chip/button used for archives and references. */
+.retro-link-btn {
+  border: 2px solid var(--retro-ink);
+  background: var(--retro-link-bg);
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  box-shadow:
+    inset -2px -2px 0 rgb(0 0 0 / 0.2),
+    2px 2px 0 var(--retro-ink);
+}
+
+.retro-link-btn:hover {
+  background: var(--retro-link-bg-hover);
+  transform: translate(-1px, -1px);
+}
+
+.retro-link-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset -1px -1px 0 rgb(0 0 0 / 0.2),
+    1px 1px 0 var(--retro-ink);
+}
+
+/* Primary close/action button style. */
+.retro-close-btn {
+  border: 4px solid var(--retro-ink);
+  background: var(--retro-button-bg);
+  color: #14171f;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  box-shadow:
+    inset -3px -3px 0 rgb(0 0 0 / 0.2),
+    3px 3px 0 var(--retro-ink);
+}
+
+.retro-close-btn:hover {
+  background: var(--retro-button-bg-hover);
+  transform: translate(-1px, -1px);
+}
+
+.retro-close-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset -1px -1px 0 rgb(0 0 0 / 0.2),
+    1px 1px 0 var(--retro-ink);
+}
+
+/* Optional class for pixel-art style rendering on images. */
+.retro-pixel-image {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }
 
 .home-bg-scroll {

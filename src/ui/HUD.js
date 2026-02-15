@@ -8,7 +8,7 @@
   RESPONSIBILITIES:
   - Display instructions (WASD, E to interact).
   - Show current era name.
-  - Show "Press E" prompts.
+  - Show "Press Space" prompts.
   - Provide "Return to Home" button.
   - Display minimal UI while playing.
 
